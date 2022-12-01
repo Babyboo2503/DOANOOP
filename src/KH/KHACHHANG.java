@@ -1,46 +1,49 @@
 package KH;
 
 import java.util.Scanner;
+
 public class KHACHHANG {
     Scanner input=new Scanner(System.in);
-    public void main(){
-        int option;
-        do {            
-        System.out.println("=====BANG CHON=====");
-        System.out.println("1.TIM KIEM");
-        System.out.println("2.THEM MOI ");
-        System.out.println("3.XEM DANH SACH KHACH HANG ");
-        System.out.println("4.THOAT ");
-        System.out.println("(1/2/3/4)");
-        option=input.nextInt();
-            switch(option){
-            case 1 -> {
-                DANHSACHKHACHHANG A=new DANHSACHKHACHHANG();
-                A.timKiem();
-            }
-            case 2 -> {
-                DANHSACHKHACHHANG B=new DANHSACHKHACHHANG();
-                if(B.ktraKH()==0){
-                    B.themKH();
-                    B.xuatDSKH();
-                }
-                
-                else
-                    System.out.println("SDT da ton tai");
-            }
-            case 3 -> {
-                DANHSACHKHACHHANG C= new DANHSACHKHACHHANG();
-                C.xuatDSKH();
-                }
-            case 4 -> {
-                HINHTHUCMUAHANG D= new HINHTHUCMUAHANG();
-                D.main();
-            }
-            }
-        }while (option<5);
-            
-        }
-            
-        }
-        
+    private String ten,SDT;
+    public void NHAP(){
+        System.out.print("Ten KH:");
+        ten=input.nextLine();
+        System.out.print("SDT:");
+        SDT=input.nextLine();  
+    }
+    public void NHAP_TEN(){
+        System.out.print("Ten KH:");
+        ten=input.nextLine(); 
+    }
+    
 
+    public String XUAT() {
+        return "THONG TIN KHACH HANG(" + "ten=" + ten + ", SDT=" + SDT + ')';
+    }
+
+    public KHACHHANG() {
+    }
+
+    public KHACHHANG(String ten, String SDT) {
+        this.ten = ten;
+        this.SDT = SDT;
+    }
+
+    public String getTen() {
+        return ten;
+    }
+
+    public void setTen(String ten) {
+        this.ten = ten;
+    }
+
+    public String getSDT() {
+        return SDT;
+    }
+
+    public void setSDT(String SDT) {
+        this.SDT = SDT;
+    }
+           
+    
+}

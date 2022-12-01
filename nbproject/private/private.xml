@@ -3,12 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/NAM2/TESST/src/tesst/DANHSACHKHACHHANG.java</file>
-            <file>file:/D:/NAM2/TESST/src/tesst/HOADON.java</file>
-            <file>file:/D:/NAM2/TESST/src/tesst/THONGTINKHACHHANG.java</file>
-            <file>file:/D:/NAM2/TESST/src/tesst/TESST.java</file>
-            <file>file:/D:/NAM2/TESST/src/tesst/KHACHHANG.java</file>
-            <file>file:/D:/NAM2/TESST/src/tesst/HINHTHUCMUAHANG.java</file>
+            <file>file:/D:/NAM2/NetBeansProjects/DOANOOP_NHOM6/src/DH/HOADON.java</file>
+            <file>file:/D:/NAM2/NetBeansProjects/DOANOOP_NHOM6/src/DH/DANHSACHHOADON.java</file>
+            <file>file:/D:/NAM2/NetBeansProjects/DOANOOP_NHOM6/src/KH/DANHSACHKHACHHANG.java</file>
+            <file>file:/D:/NAM2/NetBeansProjects/DOANOOP_NHOM6/src/KH/KHACHTHANHVIEN.java</file>
+            <file>file:/D:/NAM2/NetBeansProjects/DOANOOP_NHOM6/src/KH_ADMIN/DANHSACHKHACHHANG.java</file>
+            <file>file:/D:/NAM2/NetBeansProjects/DOANOOP_NHOM6/src/KH_ADMIN/FILE.java</file>
+            <file>file:/D:/NAM2/NetBeansProjects/DOANOOP_NHOM6/src/KH/TTOAN.java</file>
+            <file>file:/D:/NAM2/NetBeansProjects/DOANOOP_NHOM6/src/DH/THONGTINHOADON.java</file>
+            <file>file:/D:/NAM2/NetBeansProjects/DOANOOP_NHOM6/src/KH_ADMIN/MAIN.java</file>
+            <file>file:/D:/NAM2/NetBeansProjects/DOANOOP_NHOM6/manifest.mf</file>
+            <file>file:/D:/NAM2/NetBeansProjects/DOANOOP_NHOM6/src/KH_ADMIN/TTOAN.java</file>
+            <file>file:/D:/NAM2/NetBeansProjects/DOANOOP_NHOM6/src/KH_ADMIN/KHACHHANG.java</file>
+            <file>file:/D:/NAM2/NetBeansProjects/DOANOOP_NHOM6/src/KH/KHACHHANG.java</file>
+            <file>file:/D:/NAM2/NetBeansProjects/DOANOOP_NHOM6/src/KH/XUATHD.java</file>
+            <file>file:/D:/NAM2/NetBeansProjects/DOANOOP_NHOM6/src/DH/MAINDH.java</file>
+            <file>file:/D:/NAM2/NetBeansProjects/DOANOOP_NHOM6/src/KH_ADMIN/KHACHTHANHVIEN.java</file>
+            <file>file:/D:/NAM2/NetBeansProjects/DOANOOP_NHOM6/src/KH/MAIN.java</file>
+            <file>file:/D:/NAM2/NetBeansProjects/DOANOOP_NHOM6/src/KH_ADMIN/XUATHD.java</file>
+            <file>file:/D:/NAM2/NetBeansProjects/DOANOOP_NHOM6/DSKH.txt</file>
+            <file>file:/D:/NAM2/NetBeansProjects/DOANOOP_NHOM6/build.xml</file>
         </group>
     </open-files>
 </project-private>

@@ -1,9 +1,4 @@
-package KH;
-
-/**
- *
- * @author compu
- */
+package KH_ADMIN;
 public class MAIN {
 
     public static void main(String[] args) {

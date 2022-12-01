@@ -1,6 +1,7 @@
 package KH;
 import java.util.Scanner;
-public class HINHTHUCMUAHANG {
+//USER
+public class TTOAN {
     public void main(){
         Scanner input=new Scanner(System.in);
         int option;
@@ -16,7 +17,7 @@ public class HINHTHUCMUAHANG {
                 //
             }
             case 2 ->{                 
-                KHACHHANG A= new KHACHHANG();
+                KHACHTHANHVIEN A= new KHACHTHANHVIEN();
                 A.main();
             }
         }        

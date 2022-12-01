@@ -3,11 +3,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class DANHSACHKHACHHANG {
     static Scanner input=new Scanner(System.in);
-    static ArrayList<THONGTINKHACHHANG> arrayKH=new ArrayList<>();
+    static ArrayList<KHACHHANG> arrayKH=new ArrayList<>();
 //    HÀM KIỂM TRA VÀ TÌM KIẾM KHÁCH HÀNG
-    public int ktraKH(){
-        System.out.print("Nhap so dien thoai:");
-        String SDT= input.nextLine();
+    public int ktraKH(String SDT){
         for(int i=0;i<arrayKH.size();i++){
             if(SDT.compareTo(arrayKH.get(i).getSDT())==0)
                     return 1;
@@ -16,11 +14,20 @@ public class DANHSACHKHACHHANG {
     }
 //    THEM MOI KHACH HANG
     public void themKH(){
-        THONGTINKHACHHANG a= new THONGTINKHACHHANG();
-        a.NHAP();
-        arrayKH.add(a);
-        System.out.println("Them thanh cong!");        
+        System.out.print("Nhap so dien thoai:");
+        String SDT= input.nextLine();
+        if(ktraKH(SDT)==0){
+            KHACHHANG a= new KHACHHANG();
+            a.NHAP_TEN();
+            a.setSDT(SDT);
+            arrayKH.add(a);
+            System.out.println("Them thanh cong!"); 
+        }
+        else{
+        System.out.println("SDT da ton tai");
+        }
     }
+
     public void xuatDSKH(){
         for(int i=0;i<arrayKH.size();i++){
             System.out.println(arrayKH.get(i).XUAT());
@@ -38,6 +45,23 @@ public class DANHSACHKHACHHANG {
             if(i==(arrayKH.size()-1) &&SDT.compareTo(arrayKH.get(i).getSDT())!=0)
                 System.out.println("Khong ton tai");
         }
+    }
+    public void xacNhanInHD(){
+        int option;
+        do {
+        System.out.println("1.THANH TOAN");
+        System.out.println("2.THOAT ");
+        System.out.println("(1/2)");
+        option=input.nextInt();            
+            switch(option){
+            case 1 -> {
+                //
+            }
+            case 2 ->{                 
+                
+            }
+        }        
+        } while (option<3);   
     }
 }
 
