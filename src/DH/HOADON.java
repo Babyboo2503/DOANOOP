@@ -99,16 +99,17 @@ public class HOADON {
     
 
     
-    public void XUAT(){
+    public void XUAT(HOADON A){
         System.out.println("-------------------------------HOADON------------------------------------\n");
         System.out.println("Ma don: "+maHD);
-        System.out.printf("%6s%15s%15s%15s\n","Ma DH","Ma san pham","So luong","Gia tien");
-        System.out.println("          Ma san pham           Gia tien              So luong         ");
+        System.out.printf("%6s%15s%15s%15s\n","Ma san pham","Ten san pham","So luong","Gia tien");
+        System.out.printf("%6s%15s%15s%15s\n",getMaSP(),getTenSP(),getSL(),getDonGia());
+//        System.out.println("          Ma san pham           Gia tien              So luong         ");
 //        for(THONGTINSANPHAM t : ttsp){
 //        System.out.printf("%15d%15d%17.3f VND\n",t.masp,t.soluong,t.price);
 //        }
         System.out.println("-------------------------------------------------------------");
         System.out.printf("TONG TIEN : %35.3f VND",thanhTien);
-        //System.out.println("                                                       TONG TIEN = "+thanhtien+"VND");        
+        System.out.println("                                                       TONG TIEN = "+thanhTien+"VND");        
     }
 }

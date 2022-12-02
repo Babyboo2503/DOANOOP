@@ -13,6 +13,7 @@ public class DANHSACHHOADON_AD {
     static int i=0;
     Scanner input=new Scanner(System.in);
     public void themHD(){
+        FILE f=new FILE();
         HOADON a= new HOADON();
         a.NHAP();
         a.setMaHD("HD"+ String.valueOf(i));
@@ -20,7 +21,7 @@ public class DANHSACHHOADON_AD {
         System.out.println(a.getMaHD());
         System.out.println("Thanh cong!");
         arrayHD.add(a);
-        FILE f=new FILE();
+        a.XUAT(a);
         f.writeToFile(arrayHD);       
     }
      public void timKiem(){

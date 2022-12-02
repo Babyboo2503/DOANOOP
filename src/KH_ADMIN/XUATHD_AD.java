@@ -13,10 +13,9 @@ public class XUATHD_AD {
             option=input.nextInt();
             switch(option){
             case 1 -> {
-                HOADON A=new HOADON();
-                A.XUAT();
                 DANHSACHHOADON_AD B= new DANHSACHHOADON_AD();
                 B.themHD();
+                
             }
             case 2 -> {
                 TTOAN_AD A=new TTOAN_AD();               
