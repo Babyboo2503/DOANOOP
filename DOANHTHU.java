@@ -3,10 +3,11 @@ package com.mycompany.doanhthu;
 
 
 public class DOANHTHU {
-    private double giatridonhang;
+    private double tiendonhang;
     //tien thu duoc thu hoa don
     public double tienthu(){
-        giatridonhang=10000;
-        return giatridonhang;
+        DOCFILE a= new DOCFILE();
+        return a.tienhoadon();
     }
 }
+
