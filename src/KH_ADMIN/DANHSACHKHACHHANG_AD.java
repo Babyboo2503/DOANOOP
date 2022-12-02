@@ -1,12 +1,14 @@
 package KH_ADMIN;
+import KH.KHACHHANG;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
-public class DANHSACHKHACHHANG {
+public class DANHSACHKHACHHANG_AD {
     static Scanner input=new Scanner(System.in);
     static ArrayList<KHACHHANG> arrayKH=new ArrayList<>();
 //    HÀM KIỂM TRA VÀ TÌM KIẾM KHÁCH HÀNG
     public int ktraKH(String SDT){
+        arrayKH.clear();
         FILE file=new FILE();
         file.readFromFile(arrayKH); 
         for(int i=0;i<arrayKH.size();i++){
@@ -19,6 +21,7 @@ public class DANHSACHKHACHHANG {
 //    THEM MOI KHACH HANG
     public void themKH(){       
         System.out.print("Nhap so dien thoai:");
+        input=new Scanner(System.in);
         String SDT= input.nextLine();
         if(ktraKH(SDT)==0){
             KHACHHANG a= new KHACHHANG();
@@ -35,8 +38,9 @@ public class DANHSACHKHACHHANG {
     }
 //LOI ARRAYKH DANG BI TRONG, KHONG CO PHAN TU
     public void xuatDSKH(){
-//        FILE file=new FILE();
-//        file.readFromFile(arrayKH);
+        arrayKH.clear();
+        FILE file=new FILE();
+        file.readFromFile(arrayKH);
         for(int i=0;i<arrayKH.size();i++){
             System.out.println(arrayKH.get(i).toString());
         }
@@ -46,6 +50,7 @@ public class DANHSACHKHACHHANG {
         FILE f=new FILE();
         f.readFromFile(arrayKH);
         System.out.print("Nhap so dien thoai:");
+        input=new Scanner(System.in);
         String SDT= input.nextLine();
         for(int i=0;i<arrayKH.size();i++){
             if(SDT.compareTo(arrayKH.get(i).getSDT())==0){
@@ -63,8 +68,11 @@ public class DANHSACHKHACHHANG {
                     suaKH(i);
                     arrayKH.get(i).toString();
                 }
+//                ERROR
                 case 2 ->{    
-                    xoaKH();
+                    xoaKH(SDT);
+                    KHACHTHANHVIEN_AD A=new KHACHTHANHVIEN_AD();
+                    A.main();
                 }
                 }
                 }while(option<3&&option>0);
@@ -73,35 +81,25 @@ public class DANHSACHKHACHHANG {
                 System.out.println("Khong ton tai");
         }
     }
-    public void xacNhanInHD(){
-        int option;
-        do {
-        System.out.println("1.THANH TOAN");
-        System.out.println("2.THOAT ");
-        System.out.println("(1/2)");
-        option=input.nextInt();            
-            switch(option){
-            case 1 -> {
-                //
-            }
-            case 2 ->{                 
-                
-            }
-        }        
-        } while (option<3);   
-    }
-    public void xoaKH(){
-        System.out.print("Nhap so dien thoai:");
-        String SDT= input.nextLine();
+//    public void xacNhanInHD(){
+//    }
+    public void xoaKH(String SDT){
+//        System.out.print("Nhap so dien thoai:");
+//        input=new Scanner(System.in);
+//        String SDT= input.nextLine();
+        arrayKH.clear();
+        FILE f=new FILE();
+        f.readFromFile(arrayKH);
         for(int i=0;i<arrayKH.size();i++){
             if(SDT.compareTo(arrayKH.get(i).getSDT())==0){
                 arrayKH.remove(arrayKH.get(i));
+                f.writeToFile(arrayKH);
+                System.out.println("Da xoa");
                 break;
             }
-                FILE f=new FILE();
-                f.writeToFile(arrayKH);
-            if(i==(arrayKH.size()-1) &&SDT.compareTo(arrayKH.get(i).getSDT())!=0)
-                System.out.println("Khong ton tai ");
+//            if(i==(arrayKH.size()-1) &&SDT.compareTo(arrayKH.get(i).getSDT())!=0){
+//                System.out.println("");
+//            }
         }
     }
     public void suaKH(int i){
@@ -115,13 +113,21 @@ public class DANHSACHKHACHHANG {
         switch (option) {
             case 1 -> {
                 System.out.print("Nhap SDT moi:");
+                input=new Scanner(System.in);
                 String SDT_tmp=input.nextLine();
+//                arrayKH.clear();
                 arrayKH.get(i).setSDT(SDT_tmp);
+                FILE f=new FILE();
+                f.writeToFile(arrayKH);
             }
             case 2 -> {
-                System.out.println("Nhap ten moi:");
-                String ten_tmp=input.nextLine();
-                arrayKH.get(i).setTen(ten_tmp);}
+//                KHI XOA THI XOA HET MANG, NHUNG SET CHI SET 1 GIA TRI, LOI CT
+                System.out.print("Nhap ten moi:");
+                input=new Scanner(System.in);
+                String ten_tmp=input.nextLine();               
+                arrayKH.get(i).setTen(ten_tmp);
+                FILE f=new FILE();
+                f.writeToFile(arrayKH);}
         }
         }
     }

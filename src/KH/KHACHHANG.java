@@ -1,10 +1,14 @@
 package KH;
-
 import java.util.Scanner;
 
 public class KHACHHANG {
     Scanner input=new Scanner(System.in);
     private String ten,SDT;
+
+    public KHACHHANG(String ten) {
+        this.ten = ten;
+    }
+    
     public void NHAP(){
         System.out.print("Ten KH:");
         ten=input.nextLine();
@@ -15,11 +19,14 @@ public class KHACHHANG {
         System.out.print("Ten KH:");
         ten=input.nextLine(); 
     }
+
+    @Override
+    public String toString() {
+        return  SDT+"/"+ten;
+    }
     
 
-    public String XUAT() {
-        return "THONG TIN KHACH HANG(" + "ten=" + ten + ", SDT=" + SDT + ')';
-    }
+
 
     public KHACHHANG() {
     }

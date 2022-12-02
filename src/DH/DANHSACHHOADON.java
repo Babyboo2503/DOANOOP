@@ -1,10 +1,10 @@
 package DH;
 import java.util.ArrayList;
 public class DANHSACHHOADON {
-    ArrayList<THONGTINHOADON> arrayHD=new ArrayList<>();
+    ArrayList<HOADON> arrayHD=new ArrayList<>();
     char i='0';
     public void themHD(){
-        THONGTINHOADON a= new THONGTINHOADON();
+        HOADON a= new HOADON();
         a.NHAP();
         arrayHD.add(a);
         a.maHD="HD"+i;

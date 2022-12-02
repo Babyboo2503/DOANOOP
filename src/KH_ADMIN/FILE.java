@@ -1,6 +1,7 @@
 package KH_ADMIN;
 
-import static KH_ADMIN.DANHSACHKHACHHANG.arrayKH;
+import KH.KHACHHANG;
+import static KH_ADMIN.DANHSACHKHACHHANG_AD.arrayKH;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;

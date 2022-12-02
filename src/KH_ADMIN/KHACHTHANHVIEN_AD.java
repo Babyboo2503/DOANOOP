@@ -1,6 +1,6 @@
 package KH_ADMIN;
 import java.util.Scanner;
-public class KHACHTHANHVIEN {
+public class KHACHTHANHVIEN_AD {
     Scanner input=new Scanner(System.in);
     public void main(){
         int option;
@@ -14,19 +14,19 @@ public class KHACHTHANHVIEN {
         option=input.nextInt();
             switch(option){
             case 1 -> {
-                DANHSACHKHACHHANG A=new DANHSACHKHACHHANG();
+                DANHSACHKHACHHANG_AD A=new DANHSACHKHACHHANG_AD();
                 A.timKiem();
             }
             case 2 -> {
-                DANHSACHKHACHHANG B=new DANHSACHKHACHHANG();
+                DANHSACHKHACHHANG_AD B=new DANHSACHKHACHHANG_AD();
                 B.themKH();
             }
             case 3 -> {
-                DANHSACHKHACHHANG C= new DANHSACHKHACHHANG();
+                DANHSACHKHACHHANG_AD C= new DANHSACHKHACHHANG_AD();
                 C.xuatDSKH();
                 }
             case 4 -> {
-                TTOAN D= new TTOAN();
+                TTOAN_AD D= new TTOAN_AD();
                 D.main();
             }
             default -> { 
