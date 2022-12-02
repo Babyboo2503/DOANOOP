@@ -7,7 +7,6 @@ public class LOINHUAN {
     public static void main(String[] args) {
         
         CHI c1= new CHI();
-        c1.nhapdichvu();
         System.out.println("---XUAT BANG CHI TIEU TRONG THANG---");
         System.out.println("Chi : "+c1.tienchi());
         DOANHTHU d1= new DOANHTHU();
@@ -17,3 +16,4 @@ public class LOINHUAN {
         System.out.println("LOI NHUAN THANG :"+l1.tienloi);
     }
 }
+
