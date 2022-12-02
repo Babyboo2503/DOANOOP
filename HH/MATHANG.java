@@ -6,7 +6,7 @@ import java.util.Scanner;
 public abstract class MATHANG{
    private int id;
    private String name;
-   private double price;
+   private long price;
    private String exp;
    private String unit;
    private int quantity;
@@ -14,7 +14,7 @@ public abstract class MATHANG{
    public MATHANG(){
    
    }
-    public MATHANG(int id, String name, double price, String exp, String unit, int quantity, String condition) {
+    public MATHANG(int id, String name, long price, String exp, String unit, int quantity, String condition) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -35,10 +35,10 @@ public abstract class MATHANG{
     public void setName(String name) {
         this.name = name;
     }
-    public double getPrice() {
+    public long getPrice() {
         return price;
     }
-    public void setPrice(double price) {
+    public void setPrice(long price) {
         this.price = price;
     }
     public String getExp() {
@@ -95,7 +95,7 @@ public abstract class MATHANG{
     public void nhapGia(){
         Scanner inp = new Scanner(System.in);
         System.out.print("Nhập giá mặt hàng:"); 
-        price = inp.nextDouble();
+        price = inp.nextLong();
     }
     public void nhapHSD(){
         Scanner inp = new Scanner(System.in);
@@ -141,16 +141,7 @@ public abstract class MATHANG{
             }
         }
     }
-    public void khoiTaoMH(){
-        nhapId();
-        nhapTen();
-        nhapGia();
-        nhapHSD();
-        nhapSoLuong();
-        nhapDonVi();
-        kiemTraMatHang();
-        giaThanh();
-    }
+    public abstract void khoiTaoMH();
     
     public void kiemTraMatHang(){
         Checking check = new Checking();
@@ -160,7 +151,7 @@ public abstract class MATHANG{
             setCondition("Còn hạn sử dụng");
     }
     public void xuatMH(){
-        System.out.printf("%-15s%-30s%-20s%-20s%-10s%-14s%-20s\n" ,"Mã mặt hàng", "Tên mặt hàng", "Giá", "HSD", "Số lượng", "Đơn vị tính", "Tình trạng");
-        System.out.printf("%-15d%-30s%-,20f%-20s%-10d%-14s%-20s\n" ,id, name, price, exp, quantity, unit, condition);
+        //System.out.printf("%-15s%-30s%-20s%-20s%-10s\t%-14s%-20s\n" ,"Mã mặt hàng", "Tên mặt hàng", "Giá", "HSD", "Số lượng", "Đơn vị tính", "Tình trạng");
+        System.out.printf("%-15d%-30s%-,20d%-20s%-10d%-14s%-20s\n" ,id, name, price, exp, quantity, unit, condition);
     }
 }

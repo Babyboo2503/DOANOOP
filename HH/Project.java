@@ -11,10 +11,7 @@ import java.util.Scanner;
 public class Project {
 
     public static void main(String[] args){
-        Scanner inp = new Scanner(System.in);
-        DSPN a = new DSPN();
         
-        a.taoDSPN();
     }
     
     public void menu(){

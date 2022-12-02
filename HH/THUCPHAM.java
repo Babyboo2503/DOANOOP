@@ -24,18 +24,26 @@ public class THUCPHAM extends MATHANG{
      */
     @Override
     public void giaThanh() {
-        double giagoc = super.getPrice();
-        super.setPrice(giagoc * 1.2);
+        long giagoc = super.getPrice();
+        super.setPrice((long) (giagoc * 1.05));
     }
     
-    public void khoiTaoThucPham(){
-        super.khoiTaoMH();
-        giaThanh();
-    }
     
     @Override
     public void xuatMH(){
-        //System.out.printf("%-15s%-30s%-20s%-20s%-10s%-14s%-20s\n" ,"Mã mặt hàng", "Tên mặt hàng", "Giá", "HSD", "Số lượng", "Đơn vị tính", "Tình trạng");
-        System.out.printf("%-15d%-30s%-20s%-20s%-10s%-14s%-20s\n" ,super.getId(), super.getName(), super.getPrice(), super.getExp(), super.getQuantity(), super.getUnit(), super.getCondition());
+        //System.out.printf("%-15s%-30s%-20s%-20s%-10s\t%-14s%-20s\n" ,"Mã mặt hàng", "Tên mặt hàng", "Giá", "HSD", "Số lượng", "Đơn vị tính", "Tình trạng");
+        System.out.printf("%-15d%-30s%-,20d%-20s%-10d%-14s%-20s\n" ,super.getId(), super.getName(), super.getPrice(), super.getExp(), super.getQuantity(), super.getUnit(), super.getCondition());
+    }
+
+    @Override
+    public void khoiTaoMH() {
+        nhapId();
+        nhapTen();
+        nhapGia();
+        nhapHSD();
+        nhapSoLuong();
+        nhapDonVi();
+        kiemTraMatHang();
+        giaThanh();
     }
 }

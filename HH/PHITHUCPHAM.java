@@ -5,7 +5,6 @@
  */
 package project;
 
-import java.text.ParseException;
 
 /**
  *
@@ -23,18 +22,29 @@ public class PHITHUCPHAM extends MATHANG{
 
     @Override
     public void giaThanh() {
-        double giagoc = super.getPrice();
-        super.setPrice(giagoc * 1.1);
+        long giagoc = super.getPrice();
+        super.setPrice((long)(giagoc * 1.1));
     }
-    
-    public void khoiTaoThucPham() throws ParseException{
-        super.khoiTaoMH();
-        giaThanh();
-    }
-    
+
     @Override
     public void xuatMH(){
-        //System.out.printf("%-15s%-30s%-20s%-20s%-10s%-14s%-20s\n" ,"Mã mặt hàng", "Tên mặt hàng", "Giá", "HSD", "Số lượng", "Đơn vị tính", "Tình trạng");
-        System.out.printf("%-15d%-30s%-20s%-20s%-10s%-14s%-20s\n" ,super.getId(), super.getName(), super.getPrice(), super.getExp(), super.getQuantity(), super.getUnit(), super.getCondition());
+        System.out.printf("%-15s%-30s%-20s%-20s%-10s\t%-14s%-20s\n" ,"Mã mặt hàng", "Tên mặt hàng", "Giá", "HSD", "Số lượng", "Đơn vị tính", "Tình trạng");
+        System.out.printf("%-15d%-30s%-,20d%-20s%-10s%-14s%-20s\n" ,super.getId(), super.getName(), super.getPrice(), super.getExp(), super.getQuantity(), super.getUnit(), super.getCondition());
+    }
+
+    public static void main(String []args){
+        MATHANG a = new PHITHUCPHAM();
+        a.khoiTaoMH();
+        a.xuatMH();
+    }
+
+    @Override
+    public void khoiTaoMH() {
+        nhapId();
+        nhapTen();
+        nhapGia();
+        nhapSoLuong();
+        nhapDonVi();
+        giaThanh();
     }
 }

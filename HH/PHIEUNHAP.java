@@ -16,19 +16,26 @@ public class PHIEUNHAP{
     private int employeeID;
     private int supplier;
     private String date;
-    private double totalMoney = 0f;
+    private long totalMoney;
     private CHITIETPN [] ctpn;
     Scanner inp = new Scanner(System.in);
             
     public PHIEUNHAP() {
     }
-    public PHIEUNHAP(int idPN, int employeeID, int supplier, String date, double totalMoney, CHITIETPN [] ctpn) {
+    public PHIEUNHAP(int idPN, int employeeID, int supplier, String date, long totalMoney, CHITIETPN [] ctpn) {
         this.idPN = idPN;
         this.employeeID = employeeID;
         this.supplier = supplier;
         this.date = date;
         this.totalMoney = totalMoney;
         this.ctpn = ctpn;
+    }
+    public PHIEUNHAP(int idPN, int employeeID, int supplier, String date, long totalMoney){
+        this.idPN = idPN;
+        this.employeeID = employeeID;
+        this.supplier = supplier;
+        this.date = date;
+        this.totalMoney = totalMoney;
     }
     public int getIdPN() {
         return idPN;
@@ -54,10 +61,10 @@ public class PHIEUNHAP{
     public void setDate(String date) {
         this.date = date;
     }
-    public double getTotalMoney() {
+    public long getTotalMoney() {
         return totalMoney;
     }
-    public void setTotalMoney(double totalMoney) {
+    public void setTotalMoney(long totalMoney) {
         this.totalMoney = totalMoney;
     }
     public CHITIETPN[] getCtpn() {
@@ -71,8 +78,8 @@ public class PHIEUNHAP{
         idPN = inp.nextInt();
     }
     public void nhapMaNVN(){
-        Checking check = new Checking();
         System.out.println("Nhập mã nhân viên nhập: ");
+        employeeID = inp.nextInt();
     }
     public void nhapNCC(){
         DSNCC a = new DSNCC();
@@ -93,6 +100,9 @@ public class PHIEUNHAP{
         supplier = ma;
     }
     public void nhapNgayNhap(){
+        if(inp.hasNextLine()){
+            inp.nextLine();
+        }
         Checking check = new Checking();
         System.out.println("Ngày nhập phiếu: ");
         date = inp.nextLine();
@@ -115,17 +125,19 @@ public class PHIEUNHAP{
         int n;
         System.out.print("Số mặt hàng trong phiếu là: ");
         n = inp.nextInt();
+        ctpn = new CHITIETPN[n];
         for(int i=0; i<n; i++){
+            ctpn[i] = new CHITIETPN();
+            ctpn[i].setMaPN(idPN);
             ctpn[i].khoiTaoCTPN();
         }
-        
     }
     public void khoiTaoPN(){
-        nhapMaPN();
         nhapMaNVN();
         nhapNCC();
         nhapNgayNhap();
         nhapCTPN();
+        tinhTongTien1PN();
     }
     public void tinhTongTien1PN(){
         int length = ctpn.length;
@@ -133,8 +145,10 @@ public class PHIEUNHAP{
             totalMoney += ctpn[i].getThanhtien();
         }
     }
+    
     public void xuatPN(){
-        System.out.printf("%-15s\t%-20s\t%-20s\t%-20s\t%10s\n", "Mã phiếu nhập", "Mã nhà cung cấp", "Mã nhân viên nhập", "Ngày nhập phiếu", "Tổng tiền");
-        System.out.printf("%d%d%d%s%f", this.idPN, this.supplier, this.employeeID, this.date, this.totalMoney);
+        //System.out.printf("%-15s\t%-20s\t%-20s\t%-20s\t%10s\n", "Mã phiếu nhập", "Mã nhà cung cấp", "Mã nhân viên nhập", "Ngày nhập phiếu", "Tổng tiền");
+        System.out.printf("%-5d\t\t%-5d\t\t\t%5d\t\t\t%-20s\t %-,12d\n", this.idPN, this.supplier, this.employeeID, this.date, this.totalMoney);
     }
+    
 }
