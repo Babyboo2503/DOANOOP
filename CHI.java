@@ -1,6 +1,7 @@
 
-
 package com.mycompany.doanhthu;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Scanner;
 
 public class CHI {
@@ -43,8 +44,24 @@ public class CHI {
     }
 
     public double getLuongnhanvien() {
-        DOCFILE t= new DOCFILE();
-        return t.luongnhanvien();
+ 
+        try {
+            FileReader fr= new FileReader("nhanvien.txt");
+            BufferedReader br= new BufferedReader(fr);
+            String line="";
+            
+            while (true) {   
+                line=br.readLine();
+                if(line==null)
+                        break;
+                String txt[]=line.split(";");
+                double tien= Double.parseDouble(txt[2]);
+                this.luongnhanvien+=tien;
+                
+            }
+        } catch (Exception e) {
+        }
+        return this.luongnhanvien;
     }
 
     public void setLuongnhanvien(double luongnhanvien) {
@@ -52,22 +69,31 @@ public class CHI {
     }
 
     public double getTiennhaphang() {
-        DOCFILE a= new DOCFILE();
-        
-        return a.tienhanghoa();
+        try {
+            FileReader fr= new FileReader("hanghoa.txt");
+            BufferedReader br= new BufferedReader(fr);
+            String line="";
+            
+            while (true) {   
+                line=br.readLine();
+                if(line==null)
+                        break;
+                String txt[]=line.split(";");
+                double tien= Double.parseDouble(txt[2]);
+                this.tiennhaphang+=tien;
+                
+            }
+        } catch (Exception e) {
+        }
+        return this.tiennhaphang;
     }
 
     public void setTiennhaphang(double tiennhaphang) {
         this.tiennhaphang = tiennhaphang;
     }
 
-    public Scanner getSc() {
-        return sc;
-    }
-
-    public void setSc(Scanner sc) {
-        this.sc = sc;
-    }
+    
+    
     Scanner sc= new Scanner(System.in);
     public double phidichvu(){
         return (double)(getDien()+getNuoc()+getMatbang());
@@ -78,5 +104,4 @@ public class CHI {
 
   
 }
-
 
