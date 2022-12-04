@@ -71,7 +71,31 @@ public class Checking {
         return true;
         
     }
-    
+    public boolean checkNumString(String str){
+        char []ck = str.toCharArray();
+        int length = ck.length;
+        for(int i=0; i<length; i++){
+            if(ck[i] < '0' || ck[i] > '9'){
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean checkPhoneNum(String phone){
+        char []c = phone.toCharArray();
+        if(c[0] != '0'){
+            return false;
+        }
+        else{
+            if(c.length == 10 || c.length == 11){
+                return checkNumString(phone);
+            }
+            else{
+                return false;
+            }
+        }
+    }
+
     public int checkEXP(String exp){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate today = LocalDate.now();

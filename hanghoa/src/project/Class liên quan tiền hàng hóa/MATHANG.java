@@ -3,7 +3,7 @@ package project;
 import java.text.ParseException;
 import java.util.Scanner;
 
-public abstract class MATHANG{
+public class MATHANG{
    private int id;
    private String name;
    private long price;
@@ -11,9 +11,12 @@ public abstract class MATHANG{
    private String unit;
    private int quantity;
    private String condition;
+   private int thue = 0;
+
    public MATHANG(){
    
    }
+
     public MATHANG(int id, String name, long price, String exp, String unit, int quantity, String condition) {
         this.id = id;
         this.name = name;
@@ -23,56 +26,69 @@ public abstract class MATHANG{
         this.quantity = quantity;
         this.condition = condition;
     }
+
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public long getPrice() {
         return price;
     }
+
     public void setPrice(long price) {
         this.price = price;
     }
+    
     public String getExp() {
         return exp;
     }
+
     public void setExp(String exp) {
         this.exp = exp;
     }
+
     public String getUnit() {
         return unit;
     }
+
     public void setUnit(String unit) {
         this.unit = unit;
     }
+
     public int getQuantity() {
         return quantity;
     }
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
     public String getCondition() {
         return condition;
     }
+
     public void setCondition(String condition) {
         this.condition = condition;
     }
-    
-    public abstract void giaThanh();
-    
+
     public void nhapId(){
         Scanner inp = new Scanner(System.in);
         System.out.print("Nhập mã mặt hàng: ");
         id= inp.nextInt();
     }
+    
     public void nhapTen(){
         Scanner inp = new Scanner(System.in);
         Checking check = new Checking(); 
@@ -92,12 +108,15 @@ public abstract class MATHANG{
             }
         }
     }
+    
     public void nhapGia(){
         Scanner inp = new Scanner(System.in);
+        Checking check = new Checking(); 
         System.out.print("Nhập giá mặt hàng:"); 
         price = inp.nextLong();
     }
-    public void nhapHSD(){
+ 
+    public void nhapHSD() throws ParseException{
         Scanner inp = new Scanner(System.in);
         Checking check = new Checking();
         System.out.print("Nhập hạn sử dụng: ");
@@ -141,17 +160,26 @@ public abstract class MATHANG{
             }
         }
     }
-    public abstract void khoiTaoMH();
     
-    public void kiemTraMatHang(){
+    public void khoiTaoHH() throws ParseException{
+        nhapId();
+        nhapTen();
+        nhapGia();
+        nhapHSD();
+        nhapSoLuong();
+        nhapDonVi();
+        kiemTraHangHoa();
+    }
+    
+    public void kiemTraHangHoa() throws ParseException{
         Checking check = new Checking();
         if (check.checkEXP(exp) <= 0)
             setCondition("Hết hạn sử dụng");
         else if (check.checkEXP(exp) > 0)
             setCondition("Còn hạn sử dụng");
     }
-    public void xuatMH(){
-        //System.out.printf("%-15s%-30s%-20s%-20s%-10s\t%-14s%-20s\n" ,"Mã mặt hàng", "Tên mặt hàng", "Giá", "HSD", "Số lượng", "Đơn vị tính", "Tình trạng");
-        System.out.printf("%-15d%-30s%-,20d%-20s%-10d%-14s%-20s\n" ,id, name, price, exp, quantity, unit, condition);
+    
+    public String xuatHH(){
+        return String.format("%5s\t\t\t%-30s %-,20d %-20s %-10s %-14s %-20s\n" ,id, name, price, exp, quantity, unit, condition);
     }
 }

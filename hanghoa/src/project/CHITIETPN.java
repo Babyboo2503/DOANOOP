@@ -9,40 +9,34 @@ public class CHITIETPN {
     Scanner inp = new Scanner(System.in);
 
     private MATHANG g;
-    private int maPN;
-    private int maMH;
+    private String maPN;
     private long dongia;
     private int soluong;
     private long thanhtien;
 
     public CHITIETPN() {
     }
-    public CHITIETPN(MATHANG g, int maPN, int maMh, long dongia, int soluong, long thanhtien) {
+
+    public CHITIETPN(MATHANG g, String maPN, long dongia, int soluong, long thanhtien) {
         this.g = g;
         this.maPN = maPN;
-        this.maMH = maMh;
         this.dongia = dongia;
         this.soluong = soluong;
         this.thanhtien = thanhtien;
     }
+    
     public MATHANG getG() {
         return g;
     }
     public void setG(MATHANG g) {
         this.g = g;
     }
-    public int getMaPN() {
+    public String getMaPN() {
         return maPN;
     }
-    public void setMaPN(int maPN) {
+    public void setMaPN(String maPN) {
         this.maPN = maPN;
     }
-    public int getMaMH() {
-        return maMH;
-    }
-    public void setMaMH(int maMH) {
-        this.maMH = maMH;
-    }    
     public long getDongia() {
         return dongia;
     }
@@ -66,8 +60,8 @@ public class CHITIETPN {
     }
     
     public void khoiTaoCTPN(){
-        System.out.println("Chọn loại hàng:\n1/Thực phẩm.\n2/Phi thực phẩm.");
-        System.out.print("Loại mặt hàng: ");
+        System.out.println("Chọn loại hàng:\n1/Thuc pham.\n2/Phi thuc pham.");
+        System.out.print("Loai mat hang: ");
         int mode;
         mode = inp.nextInt();
         outer: while (true) {
@@ -79,20 +73,48 @@ public class CHITIETPN {
                     g = new PHITHUCPHAM();
                     break outer;
                 default:{
-                    System.out.print("Chọn lại loại mặt hàng:");
+                    System.out.print("Chon lai loai mat hang:");
                     mode = inp.nextInt();
                 }
             }
         }
         g.khoiTaoMH();
-        setMaMH(g.getId());
         setDongia(g.getPrice());
         setSoluong(g.getQuantity());
         tinhThanhTien();
     }
-    
+    public void khoiTaoCTPN(String mamh){
+        System.out.println("Chon loai hàng:\n1/Thuc pham.\n2/Phi thuc pham.");
+        System.out.print("Loai mat hang: ");
+        int mode;
+        mode = inp.nextInt();
+        outer: while (true) {
+            switch (mode) {
+                case 1:
+                    g = new THUCPHAM();
+                    break outer;
+                case 2:
+                    g = new PHITHUCPHAM();
+                    break outer;
+                default:{
+                    System.out.print("Chon lai loai mat hang:");
+                    mode = inp.nextInt();
+                }
+            }
+        }
+        g.khoiTaoMH(mamh);
+        setDongia(g.getPrice());
+        setSoluong(g.getQuantity());
+        tinhThanhTien();
+    }
+    public void xuatMh(){
+        g.xuatMH();
+    }
     public void xuatCTPN(){
-        System.out.printf("%-15s\t%-1s\t%-15s\t%-10s\t%-15s\n", "Mã phiếu nhập", "Mã mặt hàng", "Đơn giá", "Số lượng", "Thành tiền");
-        System.out.printf("%-15d\t%-14d\t%-15d\t%-10d\t%-15d\n", this.maPN, this.maMH, this.dongia, this.soluong, this.thanhtien);
+        System.out.println("Chi tiet mat hang " + this.g.getId());
+        System.out.printf("%-15s\t%-1s\t%-15s\t%-10s\t%-15s\n", "Ma phieu nhap", "Ma mat hang", "Don gia", "So luong", "Thanh tien");
+        System.out.printf("%-15s\t%-14s\t%-,15d\t%-10d\t%-,15d\n\n", this.maPN, this.g.getId(), this.dongia, this.soluong, this.thanhtien);
+        xuatMh();
+        System.out.println("\n");
     }
 }

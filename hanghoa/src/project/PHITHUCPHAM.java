@@ -16,8 +16,8 @@ public class PHITHUCPHAM extends MATHANG{
         super();
     }
 
-    public PHITHUCPHAM(int id, String name, long price, String exp, String unit, int quantity, String condition) {
-        super(id, name, price, exp, unit, quantity, condition);
+    public PHITHUCPHAM(String id, String name, long price, String unit, int quantity) {
+        super(id, name, price, unit, quantity);
     }
 
     @Override
@@ -28,19 +28,21 @@ public class PHITHUCPHAM extends MATHANG{
 
     @Override
     public void xuatMH(){
-        System.out.printf("%-15s%-30s%-20s%-20s%-10s\t%-14s%-20s\n" ,"Mã mặt hàng", "Tên mặt hàng", "Giá", "HSD", "Số lượng", "Đơn vị tính", "Tình trạng");
-        System.out.printf("%-15d%-30s%-,20d%-20s%-10s%-14s%-20s\n" ,super.getId(), super.getName(), super.getPrice(), super.getExp(), super.getQuantity(), super.getUnit(), super.getCondition());
+        System.out.printf("%-15s%-30s%-20s%-10s\t%-14s\n" ,"Ma mat hang", "Ten mat hang", "Gia",  "So luong", "Don vi tisnh");
+        System.out.printf("%-15s%-30s%-,20d%-10s\t%-14s\n" ,getId(), getName(), getPrice(), getQuantity(), getUnit());
     }
-
-    public static void main(String []args){
-        MATHANG a = new PHITHUCPHAM();
-        a.khoiTaoMH();
-        a.xuatMH();
-    }
-
     @Override
     public void khoiTaoMH() {
         nhapId();
+        nhapTen();
+        nhapGia();
+        nhapSoLuong();
+        nhapDonVi();
+        giaThanh();
+    }
+    @Override
+    public void khoiTaoMH(String mamh) {
+        setId(mamh);
         nhapTen();
         nhapGia();
         nhapSoLuong();

@@ -32,9 +32,9 @@ public class DSNCC {
     }
     
     public void nhaCungCapMacDinh(){
-        ncc[0] = new NCC(101, "Nhà cung cấp A", "0998877123");
-        ncc[1] = new NCC(102, "Nhà cung cấp B", "0998877456");
-        ncc[2] = new NCC(103, "Nhà cung cấp C", "0998877789");
+        ncc[0] = new NCC("101", "Nhà cung cấp A", "0998877123");
+        ncc[1] = new NCC("102", "Nhà cung cấp B", "0998877456");
+        ncc[2] = new NCC("103", "Nhà cung cấp C", "0998877789");
     }
     public NCC[] layNCCMacDinh(){
         return ncc;

@@ -12,22 +12,22 @@ import java.util.Scanner;
  * @author nam23
  */
 public class NCC {
-    private int maNCC;
+    private String maNCC;
     private String tenNCC;
     private String sodtlh;
     Scanner inp = new Scanner(System.in);
 
     public NCC() {
     }
-    public NCC(int maNCC, String tenNCC, String sodtlh) {
+    public NCC(String maNCC, String tenNCC, String sodtlh) {
         this.maNCC = maNCC;
         this.tenNCC = tenNCC;
         this.sodtlh = sodtlh;
     }
-    public int getMaNCC() {
+    public String getMaNCC() {
         return maNCC;
     }
-    public void setMaNCC(int maNCC) {
+    public void setMaNCC(String maNCC) {
         this.maNCC = maNCC;
     }
     public String getTenNCC() {
@@ -54,7 +54,7 @@ public class NCC {
     }
     public void nhapMaNCC(){
         System.out.print("Nhập mã nhà cung cung cấp: ");
-        maNCC = inp.nextInt();
+        maNCC = inp.nextLine();
     }
     public void nhapSdtLh(){
         System.out.print("Nhập số điện thoại nhà cung cung cấp: ");
