@@ -1,14 +1,9 @@
-package KH;
-
-/**
- *
- * @author compu
- */
+package KH_ADMIN;
 public class MAIN {
 
     public static void main(String[] args) {
         
-        TTOAN A=new TTOAN();
+        TTOAN_AD A=new TTOAN_AD();
         A.main();
         
     }

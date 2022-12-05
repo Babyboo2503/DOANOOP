@@ -4,7 +4,7 @@ package KH;
  *
  * @author compu
  */
-public class MAIN {
+public class MAIN_USER {
 
     public static void main(String[] args) {
         
