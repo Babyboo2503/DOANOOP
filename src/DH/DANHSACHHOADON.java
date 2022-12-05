@@ -8,7 +8,6 @@ public class DANHSACHHOADON {
     ArrayList<HOADON> arrayHD=new ArrayList<>();
     static public int i=0;
     public void themHD(){
-        arraySP.clear();
         FILE_DH f=new FILE_DH();
         HOADON a= new HOADON();
         a.setMaHD("HD"+ String.valueOf(i));
@@ -17,7 +16,9 @@ public class DANHSACHHOADON {
         cthd.main();
         arrayHD.add(a);
         a.XUAT(a,arraySP);
-        f.writeToFile(arrayHD);        
+        f.writeToFile(arrayHD); 
+                arraySP.clear();
+        
     }
     public void themHD_KTV(String SDT){
         FILE_DH f=new FILE_DH();
@@ -30,7 +31,8 @@ public class DANHSACHHOADON {
         cthd.main();
         arrayHD.add(a);
         a.XUAT_KTV(a,arraySP);
-        f.writeToFile(arrayHD);             
+        f.writeToFile(arrayHD);     
+        arraySP.clear();        
     }
      public void timKiem_HD(){
         FILE_DH f=new FILE_DH();

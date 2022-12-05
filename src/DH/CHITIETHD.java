@@ -16,14 +16,16 @@ public class CHITIETHD {
         do{
         System.out.println("======BANG CHON======");
         System.out.println("1.Them ");
-        System.out.println("2.Thoat");
-        System.out.println("(1/2)");
+        System.out.println("2.In");
+        System.out.println("(1/2/3)");
         option=input.nextInt();
         switch(option){
-            case 1:
+            case 1:{
                 SP A=new SP();
                 A.themSP();
                 break;
+            }
+
         }
         }while(option<2&&option>0);
         }
