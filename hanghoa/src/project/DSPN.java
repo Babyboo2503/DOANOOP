@@ -81,17 +81,17 @@ public class DSPN implements DocGhiFile{
                     String donvi = ctpn[6];
                     String tinhtrang = ctpn[7];
                     long thanhtien = Long.parseLong(ctpn[8]);
+                    String loai = ctpn[9];
                     
-                    MATHANG temp;
-                    
-                    if("null".equals(hsd)){
-                        temp = new PHITHUCPHAM(idMh, tenMh, giaMh, donvi, soluong);
-                    }
-                    else{
+                    MATHANG temp = null;
+                    if(loai.equalsIgnoreCase("TP")){
                         temp = new THUCPHAM(idMh, tenMh, giaMh, hsd, donvi, soluong, tinhtrang);
                     }
+                    else if(loai.equalsIgnoreCase("PTP")){
+                        temp = new PHITHUCPHAM(idMh, tenMh, giaMh, hsd, donvi, soluong, tinhtrang);
+                    }
                     
-                    boolean add = dsctpn.add(new CHITIETPN(temp, idPn, giaMh, soluong, thanhtien));
+                    dsctpn.add(new CHITIETPN(temp, idPn, giaMh, soluong, thanhtien));
                     line = br2.readLine();
                 }
             }catch(IOException e){
@@ -154,7 +154,6 @@ public class DSPN implements DocGhiFile{
     }
     @Override
     public void ghiFile(){
-        
         //String str = "idPN,NCC,NVNhap,NgayNhap,TongTien";  PN
         //String str = "idPN, idMH,gia,soluong,thanhtien";   CTPN
         FileWriter fw = null;
@@ -163,7 +162,7 @@ public class DSPN implements DocGhiFile{
             fw = new FileWriter("DSPN.txt");
             fw2 = new FileWriter("DSCTPN.txt");
             String idpn, idncc, idnv, ngaynhap, tongtien;
-            String idmh, tenmh, giamh, soluong, hsd, donvi, tinhtrang, thanhtien;
+            String idmh, tenmh, giamh, soluong, hsd, donvi, tinhtrang, loai, thanhtien;
             int length = dspn.size();
             for(int i=0; i<length; i++){
                 idpn = String.valueOf(dspn.get(i).getIdPN());
@@ -178,16 +177,17 @@ public class DSPN implements DocGhiFile{
                 CHITIETPN[] temp = dspn.get(i).getCtpn().clone();
                 int len = temp.length;
                 for(int j=0; j< len; j++){
-                    idmh = String.valueOf(temp[j].getG().getId());
-                    tenmh = String.valueOf(temp[j].getG().getName());
+                    idmh = temp[j].getG().getId();
+                    tenmh = temp[j].getG().getName();
                     giamh = String.valueOf(temp[j].getG().getPrice());
                     soluong = String.valueOf(temp[j].getG().getQuantity());
-                    hsd = String.valueOf(temp[j].getG().getExp());
-                    donvi = String.valueOf(temp[j].getG().getUnit());
-                    tinhtrang = String.valueOf(temp[j].getG().getCondition());
+                    hsd = temp[j].getG().getExp();
+                    donvi = temp[j].getG().getUnit();
+                    tinhtrang = temp[j].getG().getCondition();
+                    loai = temp[j].getG().getType();
                     thanhtien = String.valueOf(temp[j].getThanhtien());
                     
-                    String str2 = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s\n", idpn, idmh, tenmh, giamh, soluong, hsd, donvi, tinhtrang, thanhtien);
+                    String str2 = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n", idpn, idmh, tenmh, giamh, soluong, hsd, donvi, tinhtrang, thanhtien, loai);
                     fw2.write(str2);
                 }
             }
@@ -197,12 +197,27 @@ public class DSPN implements DocGhiFile{
             System.out.println(exc.getMessage());
         }
     }
-        
+    
     //TAO DANH SACH PHIEU MOI
-    public void taoDSPN(String ma){
+    public void taoDSPN(KHO kho){
+        System.out.print("So luong phieu them vao: ");
+        int n = inp.nextInt();
+        
+        for(int i=0; i<n; i++){
+            System.out.println("Tao phieu nhap thu " + (i+1));
+            PHIEUNHAP pn = new PHIEUNHAP();
+            pn.khoiTaoPN(kho);
+            dspn.add(pn);
+        }
+        tinhTongTienDSPN();
+        ghiFile();
+        
+    }
+    
+    //TAO PHIEU MOI
+    public void taoPN(String ma, KHO kho){
         PHIEUNHAP pn = new PHIEUNHAP();
-        pn.setIdPN(ma);
-        pn.khoiTaoPN();
+        pn.khoiTaoPN(ma, kho);
         dspn.add(pn);
         tinhTongTienDSPN();
         ghiFile();
@@ -218,40 +233,35 @@ public class DSPN implements DocGhiFile{
             int length = dspn.size();
             for (int i=0; i<length; i++){
                 dspn.get(i).xuatPN();
-            }
-        }
-    }
-    //XUAT CHI TIET PHIEU
-    public void xuatchiTietPhieu(){
-        if(dspn.isEmpty()){
-            System.out.println("KHONG CO PHIEU NHAP!");
-        }
-        else{
-            int length = dspn.size();
-            for (int i=0; i<length; i++){
-                System.out.println("Phieu " + dspn.get(i).getIdPN());
-                System.out.printf("%-15s\t%-20s\t%-20s\t%-20s\t%10s\n", "Ma phieu nhap", "Ma nha cung cap", "Ma nhan vien nhap", "Ngay nhap", "Tong tien");
-                dspn.get(i).xuatPN();
                 int len = dspn.get(i).getCtpn().length;
-                
                 for(int j=0; j<len; j++){
                     dspn.get(i).getCtpn()[j].xuatCTPN();
                 }
             }
         }
     }
+    //XUAT CHI TIET PHIEU
+    public void xuatchiTietPhieu(){        
+        int length = dspn.size();
+        for (int i=0; i<length; i++){
+            System.out.println("Phieu " + dspn.get(i).getIdPN());
+            System.out.printf("%-15s\t%-20s\t%-20s\t%-20s\t%10s\n", "Ma phieu nhap", "Ma nha cung cap", "Ma nhan vien nhap", "Ngay nhap", "Tong tien");
+            dspn.get(i).xuatPN();
+            int len = dspn.get(i).getCtpn().length;
+
+            for(int j=0; j<len; j++){
+                dspn.get(i).getCtpn()[j].xuatCTPN();
+            }
+        }
+        
+    }
     
     //KIEM TRA PHIEU THEO MA PHIEU
     public int ktPNTonTaiTheoMaPn(String ma){
-        if(dspn.isEmpty()){
-            System.out.println("KHONG CO PHIEU NHAP!");
-        }
-        else{
-            int length = dspn.size();
-            for(int i=0; i<length; i++){
-                if(ma.equals(dspn.get(i).getIdPN())){
-                    return i;
-                }
+        int length = dspn.size();
+        for(int i=0; i<length; i++){
+            if(ma.equals(dspn.get(i).getIdPN())){
+                return i;
             }
         }
         return -1;
@@ -259,15 +269,10 @@ public class DSPN implements DocGhiFile{
     
     //KIEM TRA MAT HANG TRONG 1 PHIEU
     public int ktMaMH(int indexMaPN, String ma){
-        if(dspn.isEmpty()){
-            System.out.println("KHONG CO PHIEU NHAP!");
-        }
-        else{
-            int length = dspn.get(indexMaPN).getCtpn().length;
-            for(int i=0; i<length; i++){
-                if(dspn.get(indexMaPN).getCtpn()[i].getG().getId().equals(ma)){
-                    return i;
-                }
+        int length = dspn.get(indexMaPN).getCtpn().length;
+        for(int i=0; i<length; i++){
+            if(dspn.get(indexMaPN).getCtpn()[i].getG().getId().equals(ma)){
+                return i;
             }
         }
         return -1;
@@ -275,51 +280,63 @@ public class DSPN implements DocGhiFile{
     
     //KIEM TRA THEO MA NCC TRA VE VI TRI TRONG DANH SACH PHIEU
     public int[] ktPNTonTaiTheoMaNCC1(String ma){
-        if(dspn.isEmpty()){
-            System.out.println("KHONG CO PHIEU NHAP!");
-            int []temp = {-1};
-            return temp;
-        }
-        else{
-            int length = dspn.size();
-            int []temp;
-            int count = 0;
-            for(int i=0; i<length; i++){
-                if(dspn.get(i).getSupplier().equals(ma)){
-                    count++;
-                }
+        int length = dspn.size();
+        int []temp;
+        int count = 0;
+        for(int i=0; i<length; i++){
+            if(dspn.get(i).getSupplier().equals(ma)){
+                count++;
             }
-            temp = new int[count];
-            int k = 0;
-            for(int i=0; i<length; i++){
-                if(dspn.get(i).getSupplier().equals(ma)){
-                    temp[k++] = i;
-                }
-            }
-            return temp;
         }
+        temp = new int[count];
+        int k = 0;
+        for(int i=0; i<length; i++){
+            if(dspn.get(i).getSupplier().equals(ma)){
+                temp[k++] = i;
+            }
+        }
+        return temp;
     }
     
     //KIEM TRA PHIEU THEO MA NCC TRA VE SO PHIEU CO NCC DO
     public int ktPNTonTaiTheoMaNCC2(String ma){
-        if(dspn.isEmpty()){
-            System.out.println("KHONG CO PHIEU NHAP!");
-            return -1;
+        int length = dspn.size();
+        int count = 0;
+        for(int i=0; i<length; i++){
+            if(dspn.get(i).getSupplier().equals(ma)){
+                count++;
+            }
+        }
+        return count;
+    }
+    /*
+    //KIEM TRA HANG HET HAN
+    public int ktHangHetHan(){
+        int length = dspn.size();
+        int count = 0;
+        for(int i=0; i<length; i++){
+            count += dspn.get(i).ktHangHh();
+        }
+        return count;
+    }
+    //XUAT DANH SACH CAC MAT HANG HET HAN
+    public void xoaMhHh(){
+        int count = ktHangHetHan();
+        if(count == 0){
+            System.out.println("Khong co mat hang nao het han!");
         }
         else{
             int length = dspn.size();
-            int count = 0;
             for(int i=0; i<length; i++){
-                if(dspn.get(i).getSupplier().equals(ma)){
-                    count++;
-                }
+                dspn.get(i).xoaHangHh();
             }
-            return count;
+            tinhTongTienDSPN();
+            ghiFile();
         }
     }
-    
+    */
     //THEM PHIEU MOI
-    public void themPN(){
+    public void themPN(KHO kho){
         System.out.print("Nhap ma phieu: ");
         String ma;
         ma = inp.nextLine();
@@ -338,18 +355,26 @@ public class DSPN implements DocGhiFile{
         }
         int indexMaPN = ktPNTonTaiTheoMaPn(ma);
         while(true){
-            if(indexMaPN != -1){
-                System.out.println("Phieu nhap da ton tai!");
-                return;
-            }
-            else{
+            if(indexMaPN == -2){
+                System.out.println("Khong co phieu nhap nao!");
+                System.out.println("Tien hanh tao phieu nhap!");
                 break;
             }
+            else{
+                if(indexMaPN != -1){
+                    System.out.println("Phieu nhap da ton tai!");
+                    return;
+                }
+                else{
+                    System.out.println("Tien hanh tao phieu nhap!");
+                    break;
+                }
+            }
         }
-        taoDSPN(ma);
+        taoPN(ma, kho);
     }
     //THEM MAT HANG VAO PHIEU DA TIN TAI HOAC TAO PHIEU MOI NEU KO TON TAI PHIEU
-    public void themVaoPNDaTonTai(){
+    public void themVaoPNDaTonTai(KHO  kho){
         System.out.println("Nhap ma phieu: ");
         String ma;
         ma = inp.nextLine();
@@ -367,21 +392,25 @@ public class DSPN implements DocGhiFile{
             }
         }
         int indexMaPN = ktPNTonTaiTheoMaPn(ma);
+        if(indexMaPN == -2 ){
+            System.out.println("Khong co phieu nhap nao!");
+            return;
+        }
         if(indexMaPN != -1){
             System.out.print("Nhap ma mat hang: ");
             String mamh = inp.nextLine();
             while( true ){
-                    if(check.checkNull(mamh)){
-                        System.out.print("Vui long nhap ma mat hang: ");
-                        mamh = inp.nextLine();
-                    }
-                    else if(!check.checkNumString(mamh)){
-                        System.out.print("Vui long nhap lai ma mat hang: ");
-                        mamh = inp.nextLine();
-                    }
-                    else{
-                        break;
-                    }
+                if(check.checkNull(mamh)){
+                    System.out.print("Vui long nhap ma mat hang: ");
+                    mamh = inp.nextLine();
+                }
+                else if(!check.checkNumString(mamh)){
+                    System.out.print("Vui long nhap lai ma mat hang: ");
+                    mamh = inp.nextLine();
+                }
+                else{
+                    break;
+                }
             }
             int index = ktMaMH(indexMaPN, mamh);
             if(index != -1){
@@ -398,20 +427,21 @@ public class DSPN implements DocGhiFile{
                 dspn.get(indexMaPN).getCtpn()[index].tinhThanhTien();
                 dspn.get(indexMaPN).tinhTongTien1PN();
                 tinhTongTienDSPN();
+                kho.thayDoisoluong(dspn.get(indexMaPN).getCtpn()[index].getG().getId(), dspn.get(indexMaPN).getCtpn()[index].getG().getExp(), soluongthemvao);
                 ghiFile();
             }
             else{
                 System.out.println("Tao mat hang!");
                 CHITIETPN ctmoi = new CHITIETPN();
-                ctmoi.khoiTaoCTPN(mamh);
-                
+                ctmoi.khoiTaoCTPN(mamh,kho);
+
                 int newlength = dspn.get(indexMaPN).getCtpn().length + 1;
-                
+
                 CHITIETPN []temp = new CHITIETPN[newlength];
-                
+
                 System.arraycopy(dspn.get(indexMaPN).getCtpn(), 0, temp, 0, newlength-1);
                 temp[newlength -1 ]= ctmoi;
-                
+
                 dspn.get(indexMaPN).setCtpn(temp);
                 dspn.get(indexMaPN).tinhTongTien1PN();
                 tinhTongTienDSPN();
@@ -422,12 +452,12 @@ public class DSPN implements DocGhiFile{
             System.out.println("PHIEU NHAP KHONG TON TAI!");
             System.out.println("Ban co muon tao phieu nhap moi?\n1/Tao phieu moi.\n2/Khong tao.");
             int k = inp.nextInt();
-            
+
             outer :while(true){
                 switch (k) {
                     case 1:{
                         System.out.println("TAO PHIEU NHAP MOI!");
-                        taoDSPN(ma);
+                        taoPN(ma, kho);
                     } break outer;
                     case 2:
                         break outer;
@@ -557,7 +587,7 @@ public class DSPN implements DocGhiFile{
             }
             else{
                 int length = dspn.size();
-                System.out.printf("%-15s\t%-20s\t%-20s\t%-20s\t%10s\n", "Mã phiếu nhập", "Mã nhà cung cấp", "Mã nhân viên nhập", "Ngày nhập phiếu", "Tổng tiền");
+                System.out.printf("%-15s\t%-20s\t%-20s\t%-20s\t%10s\n", "Ma phieu nhap", "Ma nha cung cap", "Ma nhan vien nhap", "Ngay nhap phieu", "Tong tien");
                 for(int i=0; i<length; i++){
                     if(dspn.get(i).getIdPN().contains(ma)){
                         dspn.get(i).xuatPN();
@@ -579,7 +609,7 @@ public class DSPN implements DocGhiFile{
             }
             else{
                 int length = dspn.size();
-                System.out.printf("%-15s\t%-20s\t%-20s\t%-20s\t%10s\n", "Mã phiếu nhập", "Mã nhà cung cấp", "Mã nhân viên nhập", "Ngày nhập phiếu", "Tổng tiền");
+                System.out.printf("%-15s\t%-20s\t%-20s\t%-20s\t%10s\n", "Ma phieu nhap", "Ma nha cung cap", "Ma nhan vien nhap", "Ngay nhap phieu", "Tong tien");
                 for(int i=0; i<length; i++){
                     if(dspn.get(i).getSupplier().contains(ma)){
                         dspn.get(i).xuatPN();
@@ -679,7 +709,7 @@ public class DSPN implements DocGhiFile{
         }
     }
     
-    public void menuThem(){
+    public void menuThem(KHO kho){
         them: 
         while(true){
             System.out.println("========================================Them========================================");
@@ -693,12 +723,12 @@ public class DSPN implements DocGhiFile{
             }
             switch(mode2){
                 case 1: {
-                    themPN();
+                    themPN(kho);
                     System.out.println("Tong so tien nhap hang: " + getTongSoTienNhapHang());
                 }
                     break;
                 case 2: {
-                    themVaoPNDaTonTai();
+                    themVaoPNDaTonTai(kho);
                     System.out.println("Tong so tien nhap hang: " + getTongSoTienNhapHang());
                 }
                     break;
@@ -713,7 +743,7 @@ public class DSPN implements DocGhiFile{
     public void menuXoa(){
         xoa: 
         while(true){
-            System.out.println("========================================Xoa========================================");
+            System.out.println("========================================Xoa phieu nhap========================================");
             System.out.println("1/Xoa phieu theo ma phieu.");
             System.out.println("2/Xoa phieu theo ma nha cung cap.");
             System.out.println("3/Xoa toan bo phieu.");
@@ -815,8 +845,56 @@ public class DSPN implements DocGhiFile{
             }
         }
     }
-    
-    
+    public void menuPn(KHO kho){
+    outer:
+        while(true){
+            System.out.println("========================================Menu phieu nhap========================================");
+            System.out.println("1/Xem phieu nhap, hang hoa.");
+            System.out.println("2/Tim kiem phieu, hang hoa.");
+            System.out.println("3/Them phieu.");
+            System.out.println("4/Xoa phieu.");
+            System.out.println("0/Thoat.");
+            System.out.print(" : ");
+            int n = inp.nextInt();
+            switch(n){
+                case 1: {
+                    if(getDspn().isEmpty()){
+                        System.out.println("Khong co phieu nhap!");
+                    }
+                    else{
+                        menuXem();
+                    }
+                }
+                    break;
+                case 2: {
+                    if(getDspn().isEmpty()){
+                        System.out.println("Khong co phieu nhap!");
+                    }
+                    else{
+                        menuTimKiem();
+                    }
+                }
+                    break;
+                case 3: {
+                    menuThem(kho);
+                }
+                    break;
+                case 4: {
+                    if(getDspn().isEmpty()){
+                        System.out.println("Khong co phieu nhap!");
+                    }
+                    else{
+                        menuXoa();
+                    }
+                }
+                    break;
+                case 0:
+                    break outer;
+                default: System.out.println("Lenh khong hop le!");
+                    break;
+            }
+        }
+    }
     public String nhapMaNcc(){
         if(inp.hasNextLine()){
             inp.nextLine();

@@ -1,40 +1,38 @@
-package project;
+ package project;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Project {
 
     public static void main(String[] args){
         Scanner in = new Scanner(System.in);
-        
         DSPN a = new DSPN();
+        KHO kho = new KHO();
+
         a.docFile();
-        
+        kho.docFile();
         outer:
         while(true){
-            System.out.println("========================================Menu========================================");
-            System.out.println("1/Xem phieu nhap, hang hoa.");
-            System.out.println("2/Tim kiem phieu, hang hoa.");
-            System.out.println("3/Them phieu.");
-            System.out.println("4/Xoa phieu.");
-            System.out.println("0/Thoat.");
-            System.out.print(" : ");
-            int n = in.nextInt();
-            switch(n){
-                case 1: a.menuXem();
-                    break;
-                case 2: a.menuTimKiem();
-                    break;
-                case 3: a.menuThem();
-                    break;
-                case 4: a.menuXoa();
-                    break;
+            int k = in.nextInt();
+            switch(k){
+                case 1: a.menuPn(kho);
+                break;
+                case 2: kho.menuKho();
+                break;
                 case 0:
                     break outer;
-                default: System.out.println("Lenh khong hop le!");
-                    break;
             }
         }
+        /*
+        String date = "05/12/2022";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate today = LocalDate.now();
+        LocalDate day = LocalDate.parse(date,formatter);
+        System.out.println(day.compareTo(today));
+        System.out.println(LocalDate.parse(today.toString(), formatter));
+        */
         
     }
     void showMenu(){

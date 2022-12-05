@@ -101,6 +101,12 @@ public class Checking {
         LocalDate today = LocalDate.now();
         LocalDate date = LocalDate.parse(exp, formatter);
         return date.compareTo(today);
-    }    
+    }
     
+    public int checkNgayNhapPhieu(String ngaynhap){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate today = LocalDate.now();
+        LocalDate date = LocalDate.parse(ngaynhap, formatter);
+        return date.compareTo(today);
+    }
 }

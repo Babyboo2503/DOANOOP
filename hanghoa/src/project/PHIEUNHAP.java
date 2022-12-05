@@ -84,16 +84,19 @@ public class PHIEUNHAP{
                 idPN = inp.nextLine();
             }
             else if(!check.checkNumString(idPN)){
-                
+                System.out.println("Sai dinh dang!");
+                System.out.print("Nhap lai ma phieu(chuoi ky tu so): ");
+                idPN = inp.nextLine();
+            }
+            else{
+                break;
             }
         }
-        
     }
     public void nhapMaNVN(){
         System.out.println("Nhap ma nhan vien nhap: ");
         employeeID = inp.nextInt();
     }
-    
     
     public void tinhTongTien1PN(){
         totalMoney = 0;
@@ -102,7 +105,6 @@ public class PHIEUNHAP{
             totalMoney += ctpn[i].getThanhtien();
         }
     }
-    
     
     public void nhapNCC(){
         DSNCC a = new DSNCC();
@@ -128,8 +130,7 @@ public class PHIEUNHAP{
     public void nhapNgayNhap(){
         System.out.println("Ngay nhap phieu: ");
         date = inp.nextLine();
-        
-        while ( check.checkNull(date) ||!check.checkDateFormat(date) )
+        while (true)
         {
             if (check.checkNull(date)){
                 System.out.println("Chua nhap ngay nhap phieu!");
@@ -141,27 +142,46 @@ public class PHIEUNHAP{
                 System.out.println("Nhap lai ngay nhap phieu theo dinh dang DD/MM/YYYY. \tVD: 20/10/2020, 01/05/2021");
                 date = inp.nextLine();
             }
+            else if(check.checkNgayNhapPhieu(date) > 0){
+                System.out.println("Ngay nhap phieu khong hop le!");
+                System.out.println("Nhap lai ngay nhap phieu theo dinh dang DD/MM/YYYY. \tVD: 20/10/2020, 01/05/2021");
+                date = inp.nextLine();
+            }
+            else{
+                break;
+            }
         }
     }
 
     //Nhap chi tiet phieu nhap moi
-    public void nhapCTPNMoi(){
+    public void nhapCTPNMoi(KHO kho){
         int n;
         System.out.print("So mat hang trong phieu la: ");
         n = inp.nextInt();
         ctpn = new CHITIETPN[n];
         for(int i=0; i<n; i++){
+            System.out.println("Tao mat hang thu " + (i+1));
             ctpn[i] = new CHITIETPN();
             ctpn[i].setMaPN(idPN);
-            ctpn[i].khoiTaoCTPN();
+            ctpn[i].khoiTaoCTPN(kho);
         }
     }
     //Tao 1 phieu nhap moi
-    public void khoiTaoPN(){
+    public void khoiTaoPN(KHO kho){
+        nhapMaPN();
         nhapMaNVN();
         nhapNCC();
         nhapNgayNhap();
-        nhapCTPNMoi();
+        nhapCTPNMoi(kho);
+        tinhTongTien1PN();
+    }
+    //Tao 1 phieu nhap moi
+    public void khoiTaoPN(String ma, KHO kho){
+        setIdPN(ma);
+        nhapMaNVN();
+        nhapNCC();
+        nhapNgayNhap();
+        nhapCTPNMoi(kho);
         tinhTongTien1PN();
     }
     
@@ -179,6 +199,7 @@ public class PHIEUNHAP{
         return false;
     }
     
+    //TIM KIEM THEO MA MAT HANG
     public boolean timKiemMHTheomamh(String ma){
         int len = ctpn.length;
         boolean c = false;
@@ -191,6 +212,7 @@ public class PHIEUNHAP{
         return c;
     }
     
+    //TIM KIEM MAT HANG THEO TEN
     public boolean timKiemMHTheotenmh(String ten){
         int len = ctpn.length;
         boolean c = false;
@@ -203,12 +225,47 @@ public class PHIEUNHAP{
         }
         return c;
     }
+    
+    //XUAT MAT HANG
     public void xuatCacMh(){
         int length = ctpn.length;
         for(int i=0; i<length; i++){
             ctpn[i].xuatMh();
         }
     }
+    /*
+    //KIEM TRA HANG HET HAN
+    public int ktHangHh(){
+        int length = ctpn.length;
+        int count = 0;
+        for(int i=0; i<length; i++){
+            if(ctpn[i].getG().getCondition().contains("Het")){
+                count++;
+            }
+        }
+        return count;
+    }
+    
+    //XOA HANG HET HAN
+    public void xoaHangHh(){
+        int length = ctpn.length;
+        int count = ktHangHh();
+        if(count == 0){
+            return;
+        }
+        else{
+            CHITIETPN []temp = new CHITIETPN[length - count];
+            int k = 0;
+            for(int i=0; i<length; i++){
+                if( !ctpn[i].getG().getCondition().contains("Het") ){
+                    temp[k++] = ctpn[i];
+                }
+            }
+            setCtpn(temp);
+            tinhTongTien1PN();
+        }
+    }
+    */
     public void xuatPN(){
         //System.out.printf("%-15s\t%-20s\t%-20s\t%-20s\t%10s\n", "Ma phieu nhap", "Ma nha cung cap", "Ma nhan vien nhap", "Ngay nhap phieu", "Tong tien");
         System.out.printf("%-5s\t\t%-5s\t\t\t%5d\t\t\t%-20s\t %-,12d\n\n", this.idPN, this.supplier, this.employeeID, this.date, this.totalMoney);

@@ -13,56 +13,20 @@ public class THUCPHAM extends MATHANG{
 
     public THUCPHAM() {
         super();
+        super.setType("TP");
     }
 
     public THUCPHAM(String id, String name, long price, String exp, String unit, int quantity, String condition) {
-        super(id, name, price, exp, unit, quantity, condition);
+        super(id, name, price, exp, unit, quantity, condition, "TP");
     }
 
-    /**
-     *
-     */
+    THUCPHAM(String mamh, String tenmh, String giamh, String hsd, String donvi, String soluong, String tinhtrang) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @Override
     public void giaThanh() {
         long giagoc = super.getPrice();
         super.setPrice((long) (giagoc * 1.05));
-    }
-    
-    
-    @Override
-    public void xuatMH(){
-        System.out.printf("%-15s%-30s%-20s%-20s%-10s\t%-14s%-20s\n" ,"Ma mat hang", "Ten mat hang", "Gia", "HSD", "So luong", "Don vi tinh", "Tinh trang");
-        System.out.printf("%-15s%-30s%-,20d%-20s%-10d\t%-14s%-20s\n" ,getId(), getName(), getPrice(), getExp(), getQuantity(), getUnit(), getCondition());
-    }
-
-    @Override
-    public void khoiTaoMH() {
-        nhapId();
-        nhapTen();
-        nhapGia();
-        nhapHSD();
-        nhapSoLuong();
-        nhapDonVi();
-        kiemTraMatHang();
-        giaThanh();
-    }
-
-    @Override
-    public void khoiTaoMH(String mamh) {
-        setId(mamh);
-        nhapTen();
-        nhapGia();
-        nhapHSD();
-        nhapSoLuong();
-        nhapDonVi();
-        kiemTraMatHang();
-        giaThanh();
-    }
-    public void kiemTraMatHang(){
-        Checking check = new Checking();
-        if (check.checkEXP(getExp()) <= 0)
-            setCondition("Het han su dung");
-        else if (check.checkEXP(getExp()) > 0)
-            setCondition("Con han su dung");
     }
 }

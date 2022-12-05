@@ -1,6 +1,5 @@
 package project;
 
-import java.text.ParseException;
 import java.util.Scanner;
 
 public abstract class MATHANG{
@@ -11,13 +10,14 @@ public abstract class MATHANG{
    private String unit;
    private int quantity;
    private String condition;
+   private String type;
    
     Checking check = new Checking(); 
 
    public MATHANG(){
    
    }
-    public MATHANG(String id, String name, long price, String exp, String unit, int quantity, String condition) {
+    public MATHANG(String id, String name, long price, String exp, String unit, int quantity, String condition, String type) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -25,14 +25,15 @@ public abstract class MATHANG{
         this.unit = unit;
         this.quantity = quantity;
         this.condition = condition;
-    }
+        this.type = type;
+    }/*
     public MATHANG(String id, String name, long price, String unit, int quantity) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.unit = unit;
         this.quantity = quantity;
-    }
+    }*/
     public String getId() {
         return id;
     }
@@ -74,6 +75,12 @@ public abstract class MATHANG{
     }
     public void setExp(String exp) {
         this.exp = exp;
+    }
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
     }
     public abstract void giaThanh();
     
@@ -168,11 +175,35 @@ public abstract class MATHANG{
             }
         }
     }
+    public void kiemTraMatHang(){
+        if (check.checkEXP(getExp()) <= 0)
+            setCondition("Het han su dung");
+        else if (check.checkEXP(getExp()) > 0)
+            setCondition("Con han su dung");
+    }
     
-    public abstract void khoiTaoMH();
-    public abstract void khoiTaoMH(String mamh);
+    public void khoiTaoMH(){
+        nhapId();
+        nhapTen();
+        nhapGia();
+        nhapHSD();
+        nhapSoLuong();
+        nhapDonVi();
+        kiemTraMatHang();
+        giaThanh();
+    };
+    public void khoiTaoMH(String mamh){
+        setId(mamh);
+        nhapTen();
+        nhapGia();
+        nhapHSD();
+        nhapSoLuong();
+        nhapDonVi();
+        kiemTraMatHang();
+        giaThanh();
+    };
     public void xuatMH(){
-        //System.out.printf("%-15s%-30s%-20s%-20s%-10s\t%-14s%-20s\n" ,"Ma mat hang", "Ten mat hang", "Gia", "HSD", "So luong", "Don vi tinh", "Tinh trang");
-        System.out.printf("%-15s%-30s%-,20d%-20s%-10d%-14s%-20s\n" ,id, name, price, exp, quantity, unit, condition);
+        //System.out.printf("%-15s%-40s%-20s%-20s%-10s\t%-14s%-20s\n" ,"Ma mat hang", "Ten mat hang", "Gia", "HSD", "So luong", "Don vi tinh", "Tinh trang");
+        System.out.printf("%-15s%-40s%-,20d%-20s%-10d\t%-14s%-20s\n" ,id, name, price, exp, quantity, unit, condition);
     }
 }

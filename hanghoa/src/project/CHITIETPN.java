@@ -59,7 +59,7 @@ public class CHITIETPN {
         return thanhtien = dongia * soluong;
     }
     
-    public void khoiTaoCTPN(){
+    public void khoiTaoCTPN(KHO kho){
         System.out.println("Chọn loại hàng:\n1/Thuc pham.\n2/Phi thuc pham.");
         System.out.print("Loai mat hang: ");
         int mode;
@@ -81,9 +81,10 @@ public class CHITIETPN {
         g.khoiTaoMH();
         setDongia(g.getPrice());
         setSoluong(g.getQuantity());
+        kho.themVaoKho(g);
         tinhThanhTien();
     }
-    public void khoiTaoCTPN(String mamh){
+    public void khoiTaoCTPN(String mamh, KHO kho){
         System.out.println("Chon loai hàng:\n1/Thuc pham.\n2/Phi thuc pham.");
         System.out.print("Loai mat hang: ");
         int mode;
@@ -105,8 +106,10 @@ public class CHITIETPN {
         g.khoiTaoMH(mamh);
         setDongia(g.getPrice());
         setSoluong(g.getQuantity());
+        kho.themVaoKho(g);
         tinhThanhTien();
     }
+    
     public void xuatMh(){
         g.xuatMH();
     }
