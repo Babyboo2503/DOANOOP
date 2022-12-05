@@ -6,7 +6,7 @@ package KH;
  */
 public class MAIN_USER {
 
-    public static void main(String[] args) {
+    public void main() {
         
         TTOAN A=new TTOAN();
         A.main();

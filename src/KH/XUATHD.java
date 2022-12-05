@@ -1,5 +1,6 @@
 package KH;
 
+import static DH.CHITIETHD.arraySP;
 import DH.DANHSACHHOADON;
 import KH_ADMIN.DANHSACHKHACHHANG_AD;
 import java.util.Scanner;
