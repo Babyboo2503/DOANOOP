@@ -15,6 +15,10 @@ public class Project {
         kho.docFile();
         outer:
         while(true){
+            System.out.println("========================================Menu ve hang hoa========================================");
+            System.out.println("1/Phieu nhap.");
+            System.out.println("2/Kho.");
+            System.out.println("0/Quay lai.");
             int k = in.nextInt();
             switch(k){
                 case 1: a.menuPn(kho);
@@ -23,6 +27,8 @@ public class Project {
                 break;
                 case 0:
                     break outer;
+                default:    System.out.println("Lenh khong hop le!");
+                    break;
             }
         }
         /*

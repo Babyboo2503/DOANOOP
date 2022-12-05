@@ -1,3 +1,10 @@
-101,101,Thit heo,105000,100,20/09/2023,kg,Con han su dung,10500000
-101,002,Ca hoi,157500,120,27/08/2023,kg,Con han su dung,39375000
-101,003,Noi gang,99000,50,null,Cai,null,4950000
+001,007,Thit bo,131250,100,01/02/2023,Kg,Con han su dung,13125000,TP
+001,008,Ca hoi,210000,120,08/02/2023,Kg,Con han su dung,25200000,TP
+002,009,Noi gang,88000,200,17/09/2025,Cai,Con han su dung,17600000,PTP
+002,010,Do lau nha,165000,200,12/09/2025,Cai,Con han su dung,33000000,PTP
+002,011,Bo cung cu lam bep,495000,300,20/10/2032,Bo,Con han su dung,148500000,PTP
+031,012,Thit heo,105000,150,11/01/2022,Kg,Het han su dung,15750000,TP
+211,014,Khau trang y te,55000,500,17/12/2024,Hop,Con han su dung,27500000,PTP
+211,015,Bot giat Aba,132000,300,10/01/2021,Bich,Het han su dung,39600000,PTP
+312,016,Banh bao,54600,200,21/12/2023,Goi,Con han su dung,10920000,TP
+312,017,Ha cao,63000,175,07/02/2021,Goi,Het han su dung,11025000,TP

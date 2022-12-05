@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 public class KHO implements DocGhiFile{
     private MATHANG [] dsmh;    
     Scanner inp = new Scanner(System.in);
+    Checking check = new Checking();
     public KHO(MATHANG[] dsmh) {
         this.dsmh = dsmh;
     }
@@ -193,13 +194,43 @@ public class KHO implements DocGhiFile{
             dsmh1.xuatMH();
         }
     }
-    
+    public void timTheoMaMh(String ma){
+        if(dsmh == null){
+            System.out.println("Kho rong!");
+            return;
+        }
+        int length = dsmh.length;
+        for(int i=0; i<length; i++){
+            if(dsmh[i].getId().contains(ma)){
+                System.out.printf("%-15s%-40s%-20s%-20s%-10s\t%-14s%-20s\n" ,"Ma mat hang", "Ten mat hang", "Gia", "HSD", "So luong", "Don vi tinh", "Tinh trang");
+                dsmh[i].xuatMH();
+            }
+        }
+        System.out.println("\n");
+    }
+    public void timTheoTen(String ten){
+        if(dsmh == null){
+            System.out.println("Kho rong!");
+            return;
+        }
+        int length = dsmh.length;
+        for(int i=0; i<length; i++){
+            String name = dsmh[i].getName().toLowerCase();
+            if(name.contains(ten)){
+                System.out.printf("%-15s%-40s%-20s%-20s%-10s\t%-14s%-20s\n" ,"Ma mat hang", "Ten mat hang", "Gia", "HSD", "So luong", "Don vi tinh", "Tinh trang");
+                dsmh[i].xuatMH();
+            }
+        }
+        System.out.println("\n");
+    }
     public void menuKho(){
         kho:
         while(true){
             System.out.println("========================================Menu kho========================================");
             System.out.println("1/Xem kho.");
-            System.out.println("2/Xoa cac mat hang het han trong kho.");
+            System.out.println("2/Tim kiem hang theo ma.");
+            System.out.println("3/Tim kiem hang theo ten.");
+            System.out.println("4/Xoa cac mat hang het han trong kho.");
             System.out.println("0/Quay lai.");
             int mode = inp.nextInt();
             switch(mode){
@@ -207,6 +238,44 @@ public class KHO implements DocGhiFile{
                     xuatKho();
                 }   break;
                 case 2:{
+                    System.out.println("Nhap ma mat hang: ");
+                    String ma = inp.nextLine();
+                    while(true){
+                        if(check.checkNull(ma)){
+                            System.out.println("Vui long nhap ma mat hang: ");
+                            ma = inp.nextLine();
+                        }
+                        else if(!check.checkNumString(ma)){
+                            System.out.println("Nhap sai dinh dang!");
+                            System.out.println("Nhap ma mat hang (chuoi ky tu so): ");
+                            ma = inp.nextLine();
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                    timTheoMaMh(ma);
+                }   break;
+                case 3:{
+                    System.out.println("Nhap ten mat hang: ");
+                    String ten = inp.nextLine();
+                    while(true){
+                        if(check.checkNull(ten)){
+                            System.out.println("Vui long nhap ten mat hang: ");
+                            ten = inp.nextLine();
+                        }
+                        else if(!check.checkTextString(ten)){
+                            System.out.println("Nhap sai dinh dang!");
+                            System.out.println("Nhap lai ten mat hang: ");
+                            ten = inp.nextLine();
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                    timTheoTen(ten);
+                }   break;
+                case 4:{
                     xoaMhHh();
                 }   break;
                 case 0:
