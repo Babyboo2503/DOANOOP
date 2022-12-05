@@ -1,4 +1,6 @@
 package KH;
+import DH.QLHD;
+import KH_ADMIN.XUATHD_AD;
 import java.util.Scanner;
 //USER
 public class TTOAN {
@@ -7,20 +9,29 @@ public class TTOAN {
         int option;
         do {
         System.out.println("=====BANG CHON=====");
-        System.out.println("1.THANH TOAN");
-        System.out.println("2.KHACH HANG ");
-        System.out.println("3.THOAT ");
-        System.out.println("(1/2/3)");
+        System.out.println("1.IN HOA DON");
+        System.out.println("2.DANH SACH KHACH THANH VIEN ");
+        System.out.println("3.DANH SACH HOA DON ");       
+        System.out.println("4.THOAT ");
+        System.out.println("(1/2/3/4)");
         option=input.nextInt();            
             switch(option){
             case 1 -> {
-                //
-            }
-            case 2 ->{                 
-                KHACHTHANHVIEN A= new KHACHTHANHVIEN();
+                XUATHD A= new XUATHD();
                 A.main();
             }
-        }        
-        } while (option<3);        
+            case 2 ->{                 
+                KHACHTHANHVIEN B= new KHACHTHANHVIEN();
+                B.main();
+            }
+            case 3 -> {
+                QLHD C=new QLHD();
+                C.main();
+            }
+            case 4 -> { 
+                System.out.println("========END========");
+                }
+            }       
+        } while (option<4&&option>0);        
     }
 }

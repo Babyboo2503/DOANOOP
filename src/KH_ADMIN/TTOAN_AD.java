@@ -9,8 +9,8 @@ public class TTOAN_AD {
         do {
         System.out.println("=====BANG CHON=====");
         System.out.println("1.IN HOA DON");
-        System.out.println("2.KHACH HANG ");
-        System.out.println("3.HOA DON ");       
+        System.out.println("2.DANH SACH KHACH THANH VIEN ");
+        System.out.println("3.DANH SACH HOA DON ");       
         System.out.println("4.THOAT ");
         System.out.println("(1/2/3/4)");
         option=input.nextInt();            
@@ -31,6 +31,6 @@ public class TTOAN_AD {
                 System.out.println("========END========");
                 }
             }       
-        } while (option<5&&option>0);        
+        } while (option<4&&option>0);        
     }
 }
