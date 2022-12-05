@@ -9,21 +9,24 @@ public class XUATHD_AD {
         do {            
             System.out.println("=====BANG CHON=====");
             System.out.println("1.IN");
-            System.out.println("2.THOAT");
+            System.out.println("2.KHACH THANH VIEN");
+            System.out.println("3.THOAT");
             option=input.nextInt();
             switch(option){
             case 1 -> {
-                HOADON A=new HOADON();
-                A.XUAT();
                 DANHSACHHOADON_AD B= new DANHSACHHOADON_AD();
                 B.themHD();
             }
             case 2 -> {
+                DANHSACHKHACHHANG_AD A=new DANHSACHKHACHHANG_AD();
+                A.timKiem_xuatHD();
+            }
+            case 3 -> {
                 TTOAN_AD A=new TTOAN_AD();               
                 A.main();
             }
             }
-        }while (option<3&&option>0);
+        }while (option<4&&option>0);
             
         }
     }
