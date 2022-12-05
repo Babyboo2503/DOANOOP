@@ -3,7 +3,6 @@ import DH_ADMIN.DANHSACHHOADON_AD;
 import static DH_ADMIN.DANHSACHHOADON_AD.arrayHD;
 import DH_ADMIN.FILE_DH;
 import KH.KHACHHANG;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class DANHSACHKHACHHANG_AD {

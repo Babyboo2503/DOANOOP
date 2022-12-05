@@ -1,6 +1,7 @@
 package KH;
 
 import DH.DANHSACHHOADON;
+import KH_ADMIN.DANHSACHKHACHHANG_AD;
 import java.util.Scanner;
 public class XUATHD {
     Scanner input=new Scanner(System.in);

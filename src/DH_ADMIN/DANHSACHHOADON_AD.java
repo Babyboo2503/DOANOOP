@@ -1,6 +1,9 @@
 package DH_ADMIN;
 
+import DH.CHITIETHD;
+import static DH.CHITIETHD.arraySP;
 import DH.HOADON;
+import DH.SP;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,11 +18,13 @@ public class DANHSACHHOADON_AD {
     public void themHD(){
         FILE_DH f=new FILE_DH();
         HOADON a= new HOADON();
-        a.NHAP();
         a.setMaHD("HD"+ String.valueOf(i));
+        SP sp=new SP();
         i++;
+                CHITIETHD cthd=new CHITIETHD();
+        cthd.main();
         arrayHD.add(a);
-        a.XUAT(a);
+        a.XUAT(a,arraySP);
         f.writeToFile(arrayHD);       
     }
     public void themHD_KTV(String SDT){
@@ -29,9 +34,10 @@ public class DANHSACHHOADON_AD {
         i++;
         a.setSDT(SDT);
 //        a.setMaNV(SDT);
-        a.NHAP();
+        CHITIETHD cthd=new CHITIETHD();
+        cthd.main();
         arrayHD.add(a);
-        a.XUAT_KTV(a);
+        a.XUAT_KTV(a,arraySP);
         f.writeToFile(arrayHD);       
     }
      public void timKiem_HD(){
@@ -43,35 +49,47 @@ public class DANHSACHHOADON_AD {
         for(int i=0;i<arrayHD.size();i++){
             if(mahd.compareTo(arrayHD.get(i).getMaHD())==0){
                 System.out.println(arrayHD.get(i).toString());
-//                int option;
-//                do{
-//                System.out.println("=====BANG CHON=====");
-//                System.out.println("1.IN HOA DON");
-//                System.out.println("2.Sua");
-//                System.out.println("3.Xoa");
-//                System.out.println("4.Thoat");
-//                System.out.println("(1/2/3/4)");
-//                option=input.nextInt();
-//                switch(option){
-//                case 1 -> {
-//                    DANHSACHHOADON_AD B= new DANHSACHHOADON_AD();
-//                    B.themHD();
-//                }
-//                case 2 -> {
-//                    suaKH(i);
-//                    arrayKH.get(i).toString();
-//                }
-//                case 3 ->{    
-//                    xoaKH(SDT);
-//                    KHACHTHANHVIEN_AD A=new KHACHTHANHVIEN_AD();
-//                    A.main();
-//                }
-//                }
-//                ERROR
-//                                    }while(option<4&&option>0);
+                int option;
+                do{
+                System.out.println("=====BANG CHON=====");
+                System.out.println("1.Xoa");
+                System.out.println("2.Thoat");
+                System.out.println("(1/2)");
+                option=input.nextInt();
+                DANHSACHHOADON_AD B= new DANHSACHHOADON_AD();
+                switch(option){
+                case 1 -> {
+                    B.xoaHD(mahd);
+                }
+                case 2 -> {
+                    QLHD_AD A=new QLHD_AD();
+                    A.main();
+                }
+                                    }}while(option<4&&option>0);
                 }
             if(i==(arrayHD.size()-1) &&mahd.compareTo(arrayHD.get(i).getMaHD())!=0)
                 System.out.println("Khong ton tai");
+        }
+    }
+     
+    public void xoaHD(String maHD){
+//        System.out.print("Nhap so dien thoai:");
+//        input=new Scanner(System.in);
+//        String SDT= input.nextLine();
+        arrayHD.clear();
+        FILE_DH f=new FILE_DH();
+        FILE_DH f2=new FILE_DH();
+        f.readFromFile(arrayHD);
+        for(int i=0;i<arrayHD.size();i++){
+            if(maHD.compareTo(arrayHD.get(i).getMaHD())==0){
+                arrayHD.remove(arrayHD.get(i));
+                f2.writeToFile(arrayHD);
+                System.out.println("Da xoa");
+                break;
+            }
+            if(i==(arrayHD.size()-1) &&maHD.compareTo(arrayHD.get(i).getSDT())!=0){
+                System.out.println("Khong thanh cong");
+            }
         }
     }
     public void xuatDSHD(){
@@ -82,38 +100,5 @@ public class DANHSACHHOADON_AD {
             System.out.println(arrayHD.get(x).toString());
         }
     }
-//    public void test(){
-//        arrayHD.clear();
-//        FILE_DH file=new FILE_DH();
-//        file.readFromFile(arrayHD);
-//    }
-    public void suaHD(){
-        int option;
-        System.out.println("=====BANGCHON=====");
-        System.out.println("1.Ma San Pham");
-        System.out.println("2.So luong");
-        System.out.println("3.Thoat");
-        System.out.println("(1/2/3)");
-        option=input.nextInt();
-        switch (option) {
-            case 1 -> {
-//                System.out.print("Nhap SDT moi:");
-//                input=new Scanner(System.in);
-//                String SDT_tmp=input.nextLine();
-////                arrayKH.clear();
-//                arrayHD.get(i).setSDT(SDT_tmp);
-//                FILE_DH f=new FILE_DH();
-//                f.writeToFile(arrayKH);
-            }
-            case 2 -> {
-////                KHI XOA THI XOA HET MANG, NHUNG SET CHI SET 1 GIA TRI, LOI CT
-//                System.out.print("Nhap ten moi:");
-//                input=new Scanner(System.in);
-//                String ten_tmp=input.nextLine();               
-//                arrayKH.get(i).setTen(ten_tmp);
-//                FILE_DH f=new FILE_DH();
-//                f.writeToFile(arrayKH);}
-        }        
-    }
-    }
+
 }

@@ -1,4 +1,5 @@
 package DH;
+import static DH.CHITIETHD.arraySP;
 import DH_ADMIN.FILE_DH;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -7,14 +8,16 @@ public class DANHSACHHOADON {
     ArrayList<HOADON> arrayHD=new ArrayList<>();
     static public int i=0;
     public void themHD(){
+        arraySP.clear();
         FILE_DH f=new FILE_DH();
         HOADON a= new HOADON();
-        a.NHAP();
         a.setMaHD("HD"+ String.valueOf(i));
         i++;
+        CHITIETHD cthd=new CHITIETHD();
+        cthd.main();
         arrayHD.add(a);
-        a.XUAT(a);
-        f.writeToFile(arrayHD);       
+        a.XUAT(a,arraySP);
+        f.writeToFile(arrayHD);        
     }
     public void themHD_KTV(String SDT){
         FILE_DH f=new FILE_DH();
@@ -23,10 +26,11 @@ public class DANHSACHHOADON {
         i++;
         a.setSDT(SDT);
 //        a.setMaNV(SDT);
-        a.NHAP();
+        CHITIETHD cthd=new CHITIETHD();
+        cthd.main();
         arrayHD.add(a);
-        a.XUAT_KTV(a);
-        f.writeToFile(arrayHD);       
+        a.XUAT_KTV(a,arraySP);
+        f.writeToFile(arrayHD);             
     }
      public void timKiem_HD(){
         FILE_DH f=new FILE_DH();
@@ -37,32 +41,7 @@ public class DANHSACHHOADON {
         for(int i=0;i<arrayHD.size();i++){
             if(mahd.compareTo(arrayHD.get(i).getMaHD())==0){
                 System.out.println(arrayHD.get(i).toString());
-//                int option;
-//                do{
-//                System.out.println("=====BANG CHON=====");
-//                System.out.println("1.IN HOA DON");
-//                System.out.println("2.Sua");
-//                System.out.println("3.Xoa");
-//                System.out.println("4.Thoat");
-//                System.out.println("(1/2/3/4)");
-//                option=input.nextInt();
-//                switch(option){
-//                case 1 -> {
-//                    DANHSACHHOADON_AD B= new DANHSACHHOADON_AD();
-//                    B.themHD();
-//                }
-//                case 2 -> {
-//                    suaKH(i);
-//                    arrayKH.get(i).toString();
-//                }
-//                case 3 ->{    
-//                    xoaKH(SDT);
-//                    KHACHTHANHVIEN_AD A=new KHACHTHANHVIEN_AD();
-//                    A.main();
-//                }
-//                }
-//                ERROR
-//                                    }while(option<4&&option>0);
+
                 }
             if(i==(arrayHD.size()-1) &&mahd.compareTo(arrayHD.get(i).getMaHD())!=0)
                 System.out.println("Khong ton tai");

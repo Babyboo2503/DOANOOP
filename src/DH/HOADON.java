@@ -2,6 +2,7 @@ package DH;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -10,9 +11,10 @@ import java.util.Scanner;
  * @author compu
  */
 public class HOADON {
-    String maHD,TenSP,maSP,SDT,maNV;
-    int SL;
-    double donGia, thanhTien;
+
+    String maHD,SDT,maNV;
+    CHITIETHD chitiethd;
+    double thanhTien;
     SimpleDateFormat ft=new SimpleDateFormat("dd-MM-yyyy");
     Date date=new Date();
     String ngayTaoHD=ft.format(date);
@@ -20,32 +22,22 @@ public class HOADON {
     Scanner input=new Scanner(System.in); 
     DecimalFormat format = new DecimalFormat();
 
-    public HOADON() {
-    }
 
-    public HOADON(String maHD,String MaNV, String SDT,String ngayTaoHD, String maSP, String TenSP, int SL, double donGia, double thanhTien) {
+
+    public HOADON(String maHD,String MaNV, String SDT,String ngayTaoHD) {
         this.maHD = maHD;
         this.maNV=MaNV;
         this.SDT = SDT;
         this.ngayTaoHD=ngayTaoHD;
-        this.TenSP = TenSP;
-        this.maSP = maSP;
-        this.SL = SL;
-        this.donGia = donGia;
-        this.thanhTien = thanhTien;
+    }
+
+    public HOADON() {
     }
 
 
-
-    public void NHAP(){
-        System.out.print("Ma san pham: ");
-        maSP=input.nextLine();
-        System.out.print("So luong: ");
-        SL=input.nextInt();
-        System.out.print("Don gia:");
-        donGia=input.nextDouble();
-        thanhTien=donGia*SL;
-        System.out.println("Thanh tien:"+format.format(thanhTien));
+    @Override
+    public String toString() {
+        return maHD + "/" + maNV + "/" + SDT + "/"+ ngayTaoHD+ "/" +chitiethd ;
     }
 
     public String getMaHD() {
@@ -54,22 +46,6 @@ public class HOADON {
 
     public void setMaHD(String maHD) {
         this.maHD = maHD;
-    }
-
-    public String getTenSP() {
-        return TenSP;
-    }
-
-    public void setTenSP(String TenSP) {
-        this.TenSP = TenSP;
-    }
-
-    public String getMaSP() {
-        return maSP;
-    }
-
-    public void setMaSP(String maSP) {
-        this.maSP = maSP;
     }
 
     public String getSDT() {
@@ -88,28 +64,12 @@ public class HOADON {
         this.maNV = maNV;
     }
 
-    public int getSL() {
-        return SL;
+    public CHITIETHD getChitiethd() {
+        return chitiethd;
     }
 
-    public void setSL(int SL) {
-        this.SL = SL;
-    }
-
-    public double getDonGia() {
-        return donGia;
-    }
-
-    public void setDonGia(double donGia) {
-        this.donGia = donGia;
-    }
-
-    public double getThanhTien() {
-        return thanhTien;
-    }
-
-    public void setThanhTien(double thanhTien) {
-        this.thanhTien = thanhTien;
+    public void setChitiethd(CHITIETHD chitiethd) {
+        this.chitiethd = chitiethd;
     }
 
     public String getNgayTaoHD() {
@@ -119,46 +79,45 @@ public class HOADON {
     public void setNgayTaoHD(String ngayTaoHD) {
         this.ngayTaoHD = ngayTaoHD;
     }
-
-    @Override
-    public String toString() {
-        return maHD + "/" + maNV + "/" + SDT + "/" + ngayTaoHD + "/" + TenSP + "/" + maSP + "/" +SL+"/"+ donGia + "/" + thanhTien;
-    }
+    
     
     
  
     
 
     
-    public void XUAT_KTV(HOADON A){
+    public void XUAT_KTV(HOADON A,ArrayList<SP> arraySP){
         System.out.println("-------------------------------HOADON------------------------------------\n");
         System.out.println("Ma don: "+getMaHD());
         System.out.println("N.Vien: "+getMaNV());
         System.out.println("                                                        KH: "+getSDT());
         System.out.println("                                                  Ngay tao: "+getNgayTaoHD());
-        System.out.printf("%6s%15s%15s%15s\n","Ma san pham","Ten san pham","So luong","Gia tien");
-        System.out.printf("%6s%15s%15s%15s\n",getMaSP(),getTenSP(),getSL(),getDonGia());
-//        System.out.println("          Ma san pham           Gia tien              So luong         ");
-//        for(THONGTINSANPHAM t : ttsp){
-//        System.out.printf("%15d%15d%17.3f VND\n",t.masp,t.soluong,t.price);
-//        }
+        System.out.printf("%6s%15s%15s%15s%15s\n","Ma san pham","Ten san pham","So luong","Gia tien","Thanh Tien");
+        for(int i=0;i<arraySP.size();i++)
+        {
+        double x=arraySP.get(i).getSL()*arraySP.get(i).getDonGia();
+        System.out.printf("%6s%15s%15s%15s%15s\n",arraySP.get(i).getMaSP(),arraySP.get(i).getTenSP(),arraySP.get(i).getSL(),arraySP.get(i).getDonGia(),x);
+        thanhTien+=x;
+        }
         System.out.println("-------------------------------------------------------------");
-        System.out.printf("TONG TIEN : %35.3f VND",thanhTien);
-        System.out.println("                                                       TONG TIEN = "+thanhTien+"VND");        
+        System.out.printf("TONG TIEN : %35.3f VND",thanhTien);    
+        System.out.println();
     }
-    public void XUAT(HOADON A){
+    public void XUAT(HOADON A,ArrayList<SP> arraySP ){
         System.out.println("-------------------------------HOADON------------------------------------\n");
         System.out.println("Ma don: "+getMaHD());
         System.out.println("N.Vien: "+getMaNV());
+        System.out.println("                                                        KH: "+getSDT());
         System.out.println("                                                  Ngay tao: "+getNgayTaoHD());
-        System.out.printf("%6s%15s%15s%15s\n","Ma san pham","Ten san pham","So luong","Gia tien");
-        System.out.printf("%6s%15s%15s%15s\n",getMaSP(),getTenSP(),getSL(),getDonGia());
-//        System.out.println("          Ma san pham           Gia tien              So luong         ");
-//        for(THONGTINSANPHAM t : ttsp){
-//        System.out.printf("%15d%15d%17.3f VND\n",t.masp,t.soluong,t.price);
-//        }
+        System.out.printf("%6s%15s%15s%15s%15s\n","Ma san pham","Ten san pham","So luong","Gia tien","Thanh Tien");
+        for(int i=0;i<arraySP.size();i++)
+        {
+        double x=arraySP.get(i).getSL()*arraySP.get(i).getDonGia();
+        System.out.printf("%6s%15s%15s%15s%15s\n",arraySP.get(i).getMaSP(),arraySP.get(i).getTenSP(),arraySP.get(i).getSL(),arraySP.get(i).getDonGia(),x);
+        thanhTien+=x;
+        }
         System.out.println("-------------------------------------------------------------");
         System.out.printf("TONG TIEN : %35.3f VND",thanhTien);
-        System.out.println("                                                       TONG TIEN = "+thanhTien+"VND");        
+        System.out.println();
     }
 }

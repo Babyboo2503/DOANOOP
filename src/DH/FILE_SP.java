@@ -1,4 +1,4 @@
-package DH_ADMIN;
+package DH;
 
 import DH.HOADON;
 import java.io.BufferedReader;
@@ -7,14 +7,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
-public class FILE_DH {
-    public void writeToFile(ArrayList<HOADON> arrayHD) {
+public class FILE_SP {
+    public void writeToFile(ArrayList<SP> arraySP) {
         try {
-            FileWriter fw=new FileWriter("DSHD.txt");
+            FileWriter fw=new FileWriter("DSSP.txt");
             BufferedWriter bw=new BufferedWriter(fw);
-            for (HOADON i : arrayHD) {
+            for (SP i : arraySP) {
                 bw.write(i.toString());
                 bw.newLine();
             } 
@@ -24,9 +23,9 @@ public class FILE_DH {
             System.out.println("LOI");
         }
     }
-    public void readFromFile(ArrayList<HOADON> arrayHD){
+    public void readFromFile(ArrayList<SP> arraySP){
         try {
-            FileReader fr=new FileReader("DSHD.txt");
+            FileReader fr=new FileReader("DSSP.txt");
             BufferedReader br=new BufferedReader(fr);
             String line=" ";
             while (true) {                
@@ -35,12 +34,16 @@ public class FILE_DH {
                 break;
             }
             String tmp[]=line.split("/");
-            String maHD=tmp[0];
-            String maNV=tmp[1];
-            String SDT=tmp[2];
-            String ngaytaoHD= tmp[3];
-
-            arrayHD.add(new HOADON(maHD,maNV,SDT,ngaytaoHD));
+            
+//                String TenSP,maSP;
+//    int SL;
+//    double donGia, thanhTien;    
+            String masp=tmp[0];
+            String tensp=tmp[1];
+            int SL=Integer.parseInt(tmp[2]);
+            double DG=Double.parseDouble(tmp[3]);
+            double TT=Double.parseDouble(tmp[4]);
+            arraySP.add(new SP(masp,tensp,SL,DG,TT));
             }
         } catch (IOException | NumberFormatException e) {
             System.out.println("LOI");

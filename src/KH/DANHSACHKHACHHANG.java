@@ -38,9 +38,9 @@ public class DANHSACHKHACHHANG extends DANHSACHKHACHHANG_AD{
     }
 //LOI ARRAYKH DANG BI TRONG, KHONG CO PHAN TU
     public void xuatDSKH(){
-//        arrayKH.clear();
-//        FILE_KH file=new FILE_KH();
-//        file.readFromFile(arrayKH);
+        arrayKH.clear();
+        FILE_KH file=new FILE_KH();
+        file.readFromFile(arrayKH);
         for(int i=0;i<arrayKH.size();i++){
             System.out.println(arrayKH.get(i).toString());
         }
