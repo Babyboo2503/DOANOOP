@@ -199,14 +199,14 @@ public class DSPN implements DocGhiFile{
     }
     
     //TAO DANH SACH PHIEU MOI
-    public void taoDSPN(KHO kho){
+    public void taoDSPN(KHO kho, DSNCC dsncc){
         System.out.print("So luong phieu them vao: ");
         int n = inp.nextInt();
         
         for(int i=0; i<n; i++){
             System.out.println("Tao phieu nhap thu " + (i+1));
             PHIEUNHAP pn = new PHIEUNHAP();
-            pn.khoiTaoPN(kho);
+            pn.khoiTaoPN(kho, dsncc);
             dspn.add(pn);
         }
         tinhTongTienDSPN();
@@ -215,9 +215,9 @@ public class DSPN implements DocGhiFile{
     }
     
     //TAO PHIEU MOI
-    public void taoPN(String ma, KHO kho){
+    public void taoPN(String ma, KHO kho, DSNCC dsncc){
         PHIEUNHAP pn = new PHIEUNHAP();
-        pn.khoiTaoPN(ma, kho);
+        pn.khoiTaoPN(ma, kho, dsncc);
         dspn.add(pn);
         tinhTongTienDSPN();
         ghiFile();
@@ -336,7 +336,7 @@ public class DSPN implements DocGhiFile{
     }
     */
     //THEM PHIEU MOI
-    public void themPN(KHO kho){
+    public void themPN(KHO kho, DSNCC dsncc){
         System.out.print("Nhap ma phieu: ");
         String ma;
         ma = inp.nextLine();
@@ -371,10 +371,10 @@ public class DSPN implements DocGhiFile{
                 }
             }
         }
-        taoPN(ma, kho);
+        taoPN(ma, kho, dsncc);
     }
     //THEM MAT HANG VAO PHIEU DA TIN TAI HOAC TAO PHIEU MOI NEU KO TON TAI PHIEU
-    public void themVaoPNDaTonTai(KHO  kho){
+    public void themVaoPNDaTonTai(KHO  kho, DSNCC dsncc){
         System.out.println("Nhap ma phieu: ");
         String ma;
         ma = inp.nextLine();
@@ -457,7 +457,7 @@ public class DSPN implements DocGhiFile{
                 switch (k) {
                     case 1:{
                         System.out.println("TAO PHIEU NHAP MOI!");
-                        taoPN(ma, kho);
+                        taoPN(ma, kho, dsncc);
                     } break outer;
                     case 2:
                         break outer;
@@ -509,10 +509,10 @@ public class DSPN implements DocGhiFile{
     }
     
     //XOA PHIEU THEO MA NCC
-    public void xoaPNTheoMaNCC(){
+    public void xoaPNTheoMaNCC(DSNCC dsncc){
         docFile();
         xuatDSPN();
-        String ma = nhapMaNcc();
+        String ma = nhapMaNcc(dsncc);
         outer :
         while(true){
             int count = ktPNTonTaiTheoMaNCC2(ma);
@@ -709,7 +709,7 @@ public class DSPN implements DocGhiFile{
         }
     }
     
-    public void menuThem(KHO kho){
+    public void menuThem(KHO kho, DSNCC dsncc){
         them: 
         while(true){
             System.out.println("========================================Them========================================");
@@ -723,12 +723,12 @@ public class DSPN implements DocGhiFile{
             }
             switch(mode2){
                 case 1: {
-                    themPN(kho);
+                    themPN(kho, dsncc);
                     System.out.println("Tong so tien nhap hang: " + getTongSoTienNhapHang());
                 }
                     break;
                 case 2: {
-                    themVaoPNDaTonTai(kho);
+                    themVaoPNDaTonTai(kho, dsncc);
                     System.out.println("Tong so tien nhap hang: " + getTongSoTienNhapHang());
                 }
                     break;
@@ -740,7 +740,7 @@ public class DSPN implements DocGhiFile{
         }
     }
     
-    public void menuXoa(){
+    public void menuXoa(DSNCC dsncc){
         xoa: 
         while(true){
             System.out.println("========================================Xoa phieu nhap========================================");
@@ -757,7 +757,7 @@ public class DSPN implements DocGhiFile{
                 }
                     break;
                 case 2: {
-                    xoaPNTheoMaNCC();
+                    xoaPNTheoMaNCC(dsncc);
                     System.out.println("Tong so tien nhap hang: " + getTongSoTienNhapHang());
                 }
                     break;
@@ -773,7 +773,7 @@ public class DSPN implements DocGhiFile{
         }
     }
     
-    public void menuTimKiem(){
+    public void menuTimKiem(DSNCC dsncc){
         timkiem:
         while(true){
             System.out.println("========================================Tim kiem========================================");
@@ -798,7 +798,7 @@ public class DSPN implements DocGhiFile{
                                 timKiemPnTheoMaPN(ma);
                             }   break;
                             case 2: {
-                                String ma = nhapMaNcc();
+                                String ma = nhapMaNcc(dsncc);
                                 timKiemPnTheoMaNCC(ma);
                             }   break;
                             case 0:
@@ -845,7 +845,7 @@ public class DSPN implements DocGhiFile{
             }
         }
     }
-    public void menuPn(KHO kho){
+    public void menuPn(KHO kho, DSNCC dsncc){
     outer:
         while(true){
             System.out.println("========================================Menu phieu nhap========================================");
@@ -871,12 +871,12 @@ public class DSPN implements DocGhiFile{
                         System.out.println("Khong co phieu nhap!");
                     }
                     else{
-                        menuTimKiem();
+                        menuTimKiem(dsncc);
                     }
                 }
                     break;
                 case 3: {
-                    menuThem(kho);
+                    menuThem(kho, dsncc);
                 }
                     break;
                 case 4: {
@@ -884,7 +884,7 @@ public class DSPN implements DocGhiFile{
                         System.out.println("Khong co phieu nhap!");
                     }
                     else{
-                        menuXoa();
+                        menuXoa(dsncc);
                     }
                 }
                     break;
@@ -895,10 +895,11 @@ public class DSPN implements DocGhiFile{
             }
         }
     }
-    public String nhapMaNcc(){
+    public String nhapMaNcc(DSNCC dsncc){
         if(inp.hasNextLine()){
             inp.nextLine();
         }
+        dsncc.xuatDSNCC();
         System.out.print("Nhap ma nha cung cap: ");
         String ma = inp.nextLine();
         while( true ){
@@ -910,16 +911,19 @@ public class DSPN implements DocGhiFile{
                 System.out.print("Vui long nhap lai ma nha cung cap: ");
                 ma = inp.nextLine();
             }
-            else if(!"101".equals(ma) && !"102".equals(ma) && !"103".equals(ma)){
-                System.out.print("Vui long nhap lai ma nha cung cap (hien tai chi co 3 nha cung cap: 101, 102 va 103).");
-                System.out.print(" : ");
+            else{   
+                int length = dsncc.getNcc().length;
+                
+                for(int i=0; i<length; i++){
+                    if(dsncc.getNcc()[i].getMaNCC().equalsIgnoreCase(ma)){
+                        return ma;
+                    }
+                }
+                System.out.println("Ma nha cung cap khong hop le!");
+                System.out.print("Vui long nhap lai: ");
                 ma = inp.nextLine();
             }
-            else{
-                break;
-            }
         }
-        return ma;
     }
     public String nhapMaPn(){
         if(inp.hasNextLine()){

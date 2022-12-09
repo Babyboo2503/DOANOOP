@@ -50,9 +50,9 @@ public class KHO implements DocGhiFile{
         System.arraycopy(dsmh, 0, temp, 0, newlength-1);
         temp[newlength-1] = a;
         setDsmh(temp);
-        xuatKho();
         ghiFile();
     }
+    
     public void thayDoisoluong(String mamh, String hsd, int soluongthemvao){
         int length = dsmh.length;
         for(int i=0; i<length; i++){
@@ -67,6 +67,10 @@ public class KHO implements DocGhiFile{
 
     @Override
     public void docFile() {
+        if(dsmh == null){
+            System.out.println("Khong co mat hang nao trong kho!");
+            return;
+        }
         FileReader fr = null;
         BufferedReader br = null;
         
@@ -124,6 +128,10 @@ public class KHO implements DocGhiFile{
 
     @Override
     public void ghiFile() {
+        if(dsmh == null){
+            System.out.println("Khong co mat hang nao trong kho!");
+            return;
+        }
         FileWriter fw = null;
         try{
             fw = new FileWriter("KHO.txt");
@@ -232,12 +240,20 @@ public class KHO implements DocGhiFile{
             System.out.println("3/Tim kiem hang theo ten.");
             System.out.println("4/Xoa cac mat hang het han trong kho.");
             System.out.println("0/Quay lai.");
-            int mode = inp.nextInt();
+            byte mode = inp.nextByte();
             switch(mode){
                 case 1:{
+                    if(dsmh == null){
+                        System.out.println("Khong co mat hang nao trong kho!");
+                        break;
+                    }
                     xuatKho();
                 }   break;
                 case 2:{
+                    if(dsmh == null){
+                        System.out.println("Khong co mat hang nao trong kho!");
+                        break;
+                    }
                     System.out.println("Nhap ma mat hang: ");
                     String ma = inp.nextLine();
                     while(true){
@@ -245,7 +261,7 @@ public class KHO implements DocGhiFile{
                             System.out.println("Vui long nhap ma mat hang: ");
                             ma = inp.nextLine();
                         }
-                        else if(!check.checkNumString(ma)){
+                        if(!check.checkNumString(ma)){
                             System.out.println("Nhap sai dinh dang!");
                             System.out.println("Nhap ma mat hang (chuoi ky tu so): ");
                             ma = inp.nextLine();
@@ -257,6 +273,10 @@ public class KHO implements DocGhiFile{
                     timTheoMaMh(ma);
                 }   break;
                 case 3:{
+                    if(dsmh == null){
+                        System.out.println("Khong co mat hang nao trong kho!");
+                        break;
+                    }
                     System.out.println("Nhap ten mat hang: ");
                     String ten = inp.nextLine();
                     while(true){
@@ -276,6 +296,10 @@ public class KHO implements DocGhiFile{
                     timTheoTen(ten);
                 }   break;
                 case 4:{
+                    if(dsmh == null){
+                        System.out.println("Khong co mat hang nao trong kho!");
+                        break;
+                    }
                     xoaMhHh();
                 }   break;
                 case 0:

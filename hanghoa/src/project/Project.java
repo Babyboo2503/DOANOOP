@@ -8,23 +8,28 @@ public class Project {
 
     public static void main(String[] args){
         Scanner in = new Scanner(System.in);
-        DSPN a = new DSPN();
+        DSPN dspn = new DSPN();
+        DSNCC dsncc = new DSNCC();
         KHO kho = new KHO();
 
-        a.docFile();
+        dspn.docFile();
         kho.docFile();
+        dsncc.docFile();
         outer:
         while(true){
             System.out.println("========================================Menu ve hang hoa========================================");
             System.out.println("1/Phieu nhap.");
             System.out.println("2/Kho.");
+            System.out.println("2/Cac nha cung cap.");
             System.out.println("0/Quay lai.");
-            int k = in.nextInt();
+            byte k = in.nextByte();
             switch(k){
-                case 1: a.menuPn(kho);
-                break;
+                case 1: dspn.menuPn(kho,dsncc);
+                    break;
                 case 2: kho.menuKho();
-                break;
+                    break;
+                case 3: dsncc.menuNcc();
+                    break;
                 case 0:
                     break outer;
                 default:    System.out.println("Lenh khong hop le!");

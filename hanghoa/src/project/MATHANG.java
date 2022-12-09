@@ -140,8 +140,7 @@ public abstract class MATHANG{
         System.out.print("Nhap han su dung: ");
         this.exp = inp.nextLine();
 
-        while ( check.checkNull(exp) ||!check.checkDateFormat(exp) )
-        {
+        while (true){
             if (check.checkNull(exp)){
                 System.out.println("Chua nhap han su dung!");
                 System.out.println("Nhap han su dung theo đinh dang DD/MM/YYYY. \tVD: 20/10/2020, 01/05/2021");
@@ -152,6 +151,8 @@ public abstract class MATHANG{
                 System.out.println("Nhap lại han su dung theo đinh dang DD/MM/YYYY. \tVD: 20/10/2020, 01/05/2021");
                 exp = inp.nextLine();
             }
+            else
+                break;
         }
     }
     public void nhapDonVi(){

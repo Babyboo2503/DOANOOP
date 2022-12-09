@@ -106,26 +106,35 @@ public class PHIEUNHAP{
         }
     }
     
-    public void nhapNCC(){
-        DSNCC a = new DSNCC();
-        a.nhaCungCapMacDinh();
+    public void nhapNCC(DSNCC a){
         System.out.println("Cac nha cung cap: ");
-        a.xuatNCCMacDinh();
+        a.xuatDSNCC();
         if(inp.hasNextLine()){
             inp.nextLine();
         }
         System.out.print("Ma nha cung cấp duoc chon la:  ");
         String ma = inp.nextLine();
         while(true){
-            if (ma.equals(a.getNcc(2).getMaNCC())|| ma.equals(a.getNcc(0).getMaNCC()) || ma.equals(a.getNcc(1).getMaNCC())){
-                break;
+            if(check.checkNull(ma)){
+                System.out.print("Vui long nhap ma nha cung cap: ");
+                ma = inp.nextLine();
+            }
+            else if(!check.checkNumString(ma)){
+                System.out.print("Vui long nhap dung dinh dang (chuoi ky tu so): ");
+                ma = inp.nextLine();
             }
             else{
-                System.out.println("Vui long chon 1 trong 3 nha cung cap: ");
+                int length = a.getNcc().length;
+                for(int i=0; i<length; i++){
+                    if(a.getNcc()[i].getMaNCC().equalsIgnoreCase(ma)){
+                        supplier = ma;
+                        return;
+                    }
+                }
+                System.out.println("Vui long chon cung nha cung cap: ");
                 ma = inp.nextLine();
             }
         }
-        supplier = ma;
     }
     public void nhapNgayNhap(){
         System.out.println("Ngay nhap phieu: ");
@@ -167,19 +176,19 @@ public class PHIEUNHAP{
         }
     }
     //Tao 1 phieu nhap moi
-    public void khoiTaoPN(KHO kho){
+    public void khoiTaoPN(KHO kho, DSNCC dsncc){
         nhapMaPN();
         nhapMaNVN();
-        nhapNCC();
+        nhapNCC(dsncc);
         nhapNgayNhap();
         nhapCTPNMoi(kho);
         tinhTongTien1PN();
     }
     //Tao 1 phieu nhap moi
-    public void khoiTaoPN(String ma, KHO kho){
+    public void khoiTaoPN(String ma, KHO kho, DSNCC dsncc){
         setIdPN(ma);
         nhapMaNVN();
-        nhapNCC();
+        nhapNCC(dsncc);
         nhapNgayNhap();
         nhapCTPNMoi(kho);
         tinhTongTien1PN();
@@ -233,39 +242,7 @@ public class PHIEUNHAP{
             ctpn[i].xuatMh();
         }
     }
-    /*
-    //KIEM TRA HANG HET HAN
-    public int ktHangHh(){
-        int length = ctpn.length;
-        int count = 0;
-        for(int i=0; i<length; i++){
-            if(ctpn[i].getG().getCondition().contains("Het")){
-                count++;
-            }
-        }
-        return count;
-    }
-    
-    //XOA HANG HET HAN
-    public void xoaHangHh(){
-        int length = ctpn.length;
-        int count = ktHangHh();
-        if(count == 0){
-            return;
-        }
-        else{
-            CHITIETPN []temp = new CHITIETPN[length - count];
-            int k = 0;
-            for(int i=0; i<length; i++){
-                if( !ctpn[i].getG().getCondition().contains("Het") ){
-                    temp[k++] = ctpn[i];
-                }
-            }
-            setCtpn(temp);
-            tinhTongTien1PN();
-        }
-    }
-    */
+
     public void xuatPN(){
         //System.out.printf("%-15s\t%-20s\t%-20s\t%-20s\t%10s\n", "Ma phieu nhap", "Ma nha cung cap", "Ma nhan vien nhap", "Ngay nhap phieu", "Tong tien");
         System.out.printf("%-5s\t\t%-5s\t\t\t%5d\t\t\t%-20s\t %-,12d\n\n", this.idPN, this.supplier, this.employeeID, this.date, this.totalMoney);
