@@ -1,0 +1,10 @@
+007,Thit bo,131250,100,01/02/2023,Kg,Con han su dung,TP
+008,Ca hoi,210000,120,08/02/2023,Kg,Con han su dung,TP
+009,Noi gang,88000,200,17/09/2025,Cai,Con han su dung,PTP
+010,Do lau nha,165000,200,12/09/2025,Cai,Con han su dung,PTP
+011,Bo cung cu lam bep,495000,300,20/10/2032,Bo,Con han su dung,PTP
+012,Thit heo,105000,150,11/01/2022,Kg,Het han su dung,TP
+014,Khau trang y te,55000,500,17/12/2024,Hop,Con han su dung,PTP
+015,Bot giat Aba,132000,300,10/01/2021,Bich,Het han su dung,PTP
+016,Banh bao,54600,200,21/12/2023,Goi,Con han su dung,TP
+017,Ha cao,63000,175,07/02/2021,Goi,Het han su dung,TP
