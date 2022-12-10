@@ -18,29 +18,6 @@ public class loinhuan {
         return loinhuan_t;
     }
 
-
-    public void Nhap(){
-        Scanner sc=new Scanner(System.in);
-
-        int luachon1;
-        do{
-            System.out.println("\n<---------------------DOANH THU--------------------->\n");
-            System.out.println("Xuat doanh thu theo: \n1.Ngay \n2.Thang \n0.Thoat");
-            System.out.print("Nhap lua chon: ");
-            luachon1 = Integer.valueOf(sc.nextLine());
-            if (luachon1==1){
-                doanhthungay();
-            }
-            else if (luachon1==2){
-                doanhthuthang();
-            }
-            else if (luachon1==0) break;
-        } while(luachon1<1 || 3<luachon1);
- 
-        sc.close();
-    }
-
-
     public void doanhthungay(){
         Scanner sc=new Scanner(System.in);
         chi chi_n=new chi();
@@ -89,6 +66,23 @@ public class loinhuan {
     
     public static void main(String[] args) throws InterruptedException {
         loinhuan LN = new loinhuan();
-        LN.Nhap();
+             Scanner sc=new Scanner(System.in);
+
+        int luachon1;
+        do{
+            System.out.println("\n<---------------------DOANH THU--------------------->\n");
+            System.out.println("Xuat doanh thu theo: \n1.Ngay \n2.Thang \n0.Thoat");
+            System.out.print("Nhap lua chon: ");
+            luachon1 = Integer.valueOf(sc.nextLine());
+            if (luachon1==1){
+                LN.doanhthungay();
+            }
+            else if (luachon1==2){
+                LN.doanhthuthang();
+            }
+            else if (luachon1==0) break;
+        } while(luachon1<1 || 3<luachon1);
+ 
+        sc.close();
     }
 }
