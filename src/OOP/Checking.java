@@ -71,7 +71,7 @@ public class Checking {
         return true;
         
     }
-    public boolean checkNumString(String str){
+    public static boolean checkNumString(String str){
         char []ck = str.toCharArray();
         int length = ck.length;
         for(int i=0; i<length; i++){
@@ -81,7 +81,7 @@ public class Checking {
         }
         return true;
     }
-    public boolean checkPhoneNum(String phone){
+    public static boolean checkPhoneNum(String phone){
         char []c = phone.toCharArray();
         if(c[0] != '0'){
             return false;

@@ -8,14 +8,16 @@ import static OOP.IO.input;
  */
 public class QUANLYCUAHANG {
     public static void ADMIN() throws InterruptedException{
-        System.out.println("=====MENU=====ADMIN=====");
-        System.out.println("1. IN HÓA ĐƠN TẠI QUẦY");
-        System.out.println("2. QUẢN LÍ NHÂN SỰ");
-        System.out.println("3. QUẢN LÍ HÀNG HÓA");
-        System.out.println("4. QUẢN LÍ KHÁCH HÀNG");
-        System.out.println("5. QUẢN LÍ HÓA ĐƠN");
-        System.out.println("6. THU CHI");
+        do{
         int option;
+        System.out.println("=====MENU=====ADMIN=====");
+        System.out.println("1. IN HOA DON TAI QUAY");
+        System.out.println("2. QUAN LY NHAN SU");
+        System.out.println("3. QUAN LY HANG HOA");
+        System.out.println("4. QUAN LY KHACH HANG");
+        System.out.println("5. QUAN LY HOA DON");
+        System.out.println("6. THU CHI");
+        System.out.println("7. THOAT");
         System.out.println("(1/2/3/4/5/6)");
         option=input.nextInt();
         switch (option) {
@@ -33,40 +35,42 @@ public class QUANLYCUAHANG {
                 break;
             case 5:
                 MAINHD.main();
+                break;
             case 6:
                 loinhuan.main();
+                break;
             default:
-                System.out.println("=========END=========");
-        }        
+                MAIN.main();
+        }      
+        }while(true);
     }
-    public static void USER() throws InterruptedException{
+    public static void USER(int id) throws InterruptedException{
+        do{
         System.out.println("=====MENU=====USER=====");
-        System.out.println("1. IN HÓA ĐƠN TẠI QUẦY");
-        System.out.println("2. HÀNG HÓA");
-        System.out.println("3. KHÁCH HÀNG");
-        System.out.println("4. HÓA ĐƠN");
+        System.out.println("1. IN HOA DON TAI QUAY");
+        System.out.println("2. HANG HOA");
+        System.out.println("3. KHACH HANG");
+        System.out.println("4. HOA DON");
+            System.out.println("5. THOAT");
+        System.out.println("(1/2/3/4)");   
         int option;
-        System.out.println("(1/2/3/4)");
         option=input.nextInt();
         switch (option) {
             case 1:
-                TAIQUAY.main();
+                TAIQUAY.main(id);
                 break;
             case 2:
-                MainNV.main();
-                break;
-            case 3:
                 MAINhh.main();
                 break;
-            case 4:
+            case 3:
                 MAINKH.main();
                 break;
-            case 5:
+            case 4:
                 MAINHD.main();
-            case 6:
-                loinhuan.main();
+                break;
             default:
-                throw new AssertionError();
-        }        
-    }        
+                MAIN.main();
+        }     
+    }while(true); 
+    }
     }

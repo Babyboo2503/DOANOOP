@@ -9,7 +9,7 @@ import java.util.Scanner;
  */
 public class MainNV {
     public static Scanner scanner = new Scanner(System.in);
-    public static void main() {
+    public static void main() throws InterruptedException {
         String choose = null;
         boolean exit = false;
         Chinhsuadanhsach chinhsuadanhsach = new Chinhsuadanhsach();
@@ -17,7 +17,7 @@ public class MainNV {
 
         // show menu
         showMenu();
-
+        outer:
         while (true) {
             choose = scanner.nextLine();
             switch (choose) {
@@ -39,9 +39,7 @@ public class MainNV {
                     System.out.println(chinhsuadanhsach.findNhanVien());
                     break;
                 case "0":
-                    System.out.println("exited!");
-                    exit = true;
-                    break;
+                    break outer;
                 default:
                     System.out.println("invalid! please choose action in below menu:");
                     break;

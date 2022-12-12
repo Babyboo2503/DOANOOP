@@ -33,10 +33,6 @@ public class FILE{
             while (true) {  
             line=br.readLine(); //doc tung dong
             if(line==null){
-                System.out.println("Danh sach khach hang rong");
-                System.out.println("Hay them 1 KH moi di ne");
-                DANHSACHKHACHHANG A=new DANHSACHKHACHHANG();
-                A.themKH();
                 break;
             }
             else{
@@ -52,7 +48,7 @@ public class FILE{
     }
     public void writeToFile_HD(ArrayList<HOADON> arrayHD) {
         try {
-            FileWriter fw=new FileWriter("DSHD.txt");
+            FileWriter fw=new FileWriter("DSHD.txt",true);
             BufferedWriter bw=new BufferedWriter(fw);
             for (HOADON i : arrayHD) {
                 bw.write(i.toString());
@@ -72,16 +68,14 @@ public class FILE{
             while (true) {                
             line=br.readLine(); //doc tung dong
             if(line==null){
-                System.out.println("Danh sach hoa don rong");
                 break;
             }
             else{
             String tmp[]=line.split("/");
             String maHD=tmp[0];
-            String maNV=tmp[1];
+            int maNV=Integer.parseInt(tmp[1]);
             String SDT=tmp[2];
             String ngaytaoHD= tmp[3];
-
             arrayHD.add(new HOADON(maHD,maNV,SDT,ngaytaoHD));
             }}
         } catch (IOException | NumberFormatException e) {

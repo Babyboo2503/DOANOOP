@@ -1,34 +1,68 @@
 package OOP;
 
+import static java.lang.constant.ConstantDescs.NULL;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class DANHSACHHOADON extends IOfile{
-        ArrayList<HOADON> arrayHD= new ArrayList<>();
-        DANHSACHKHACHHANG A=new DANHSACHKHACHHANG();   
+        static ArrayList<HOADON> arrayHD= new ArrayList<>();
+        DANHSACHKHACHHANG A=new DANHSACHKHACHHANG();    
         Scanner input=new Scanner(System.in);
-        public int i=0;
+        static int i=0;
         int option;
         CHITIETHOADON B=new CHITIETHOADON();        
-    public void InHD(){
+    public void InHD(int id){
         HOADON a= new HOADON();
         a.setMaHD("HD"+ String.valueOf(i));
         i++;
+        a.setMaNV(id);
+        arrayHD.clear();
         arrayHD.add(a);
         f.writeToFile_HD(arrayHD);
-        B.nhap();
+        B.nhap(a);        
     }
-    public void InHD_KTV(String SDT){
-
-
+    public void InHD_KTV(int id){
+        String SDT;
+        System.out.println("Nhap SDT");
+        SDT=input.nextLine();
         if (A.ktraKH(SDT)==1){
             HOADON a= new HOADON();
             a.setMaHD("HD"+ String.valueOf(i));
             i++;
             a.setSDT(SDT);
+            a.setMaNV(id);
+            arrayHD.clear();
             arrayHD.add(a);
-            f.writeToFile_HD(arrayHD); 
-            B.nhap();
-            System.out.println("Them thanh cong");
+            f.writeToFile_HD(arrayHD);  
+            B.nhap_KTV(a);          
+        }
+        else{
+            System.out.println("KHACH HANG KHONG TON TAI");
+        }
+    }    
+    public void InHD(){
+        HOADON a= new HOADON();
+        a.setMaHD("HD"+ String.valueOf(i));
+        i++;
+        a.setMaNV(0);
+        arrayHD.clear();
+        arrayHD.add(a);
+        f.writeToFile_HD(arrayHD); 
+        B.nhap(a);        
+    }
+    public void InHD_KTV(){
+        String SDT;
+        System.out.println("Nhap SDT");
+        SDT=input.nextLine();
+        if (A.ktraKH(SDT)==1){
+            HOADON a= new HOADON();
+            a.setMaHD("HD"+ String.valueOf(i));
+            i++;
+            a.setSDT(SDT);
+            a.setMaNV(0);
+            arrayHD.clear();
+            arrayHD.add(a);
+            f.writeToFile_HD(arrayHD);
+            B.nhap_KTV(a);            
         }
         else{
             System.out.println("KHACH HANG KHONG TON TAI");
@@ -36,32 +70,37 @@ public class DANHSACHHOADON extends IOfile{
 
     }    
     
+    
 
      public void timKiem_HD(){
+         int n=0;
         f.readFromFile_HD(arrayHD);
+        if(f!=NULL){
         System.out.print("Nhap ma hoa don:");
         input=new Scanner(System.in);
         String mahd= input.nextLine();
-        for(int n=0;n<arrayHD.size();n++){
+        for(;n<arrayHD.size();n++){
             if(mahd.compareTo(arrayHD.get(n).getMaHD())==0){
                 System.out.println(arrayHD.get(n).toString());
                 }
-            if(n==(arrayHD.size()-1) &&mahd.compareTo(arrayHD.get(n).getMaHD())!=0)
+            if(n==(arrayHD.size()-1) &&mahd.compareTo(arrayHD.get(n).getMaHD())!=0){
                 System.out.println("Khong ton tai");
+            }
         }
+        }
+        else
+             System.out.println("DSHD rong");
     }
      public void timKiem_HD(String SDT){
         f.readFromFile_HD(arrayHD);
-//        System.out.print("Nhap ma hoa don:");
-//        input=new Scanner(System.in);
-//        String mahd= input.nextLine();
-        for(int n=0;n<arrayHD.size();n++){
+        int n=0;
+        for(;n<arrayHD.size();n++){
             if(SDT.compareTo(arrayHD.get(n).getSDT())==0){
                 System.out.println(arrayHD.get(n).toString());
                 }
-            if(n==(arrayHD.size()-1) &&SDT.compareTo(arrayHD.get(n).getSDT())!=0)
-                System.out.println("Khong ton tai");
         }
+        if(n==(arrayHD.size()-1) &&SDT.compareTo(arrayHD.get(n).getSDT())!=0)
+                System.out.println("Lich su mua hang trong");
     }
     public void xuatDSHD(){
         arrayHD.clear();
@@ -85,7 +124,8 @@ public class DANHSACHHOADON extends IOfile{
                 System.out.println("Khong ton tai");
         }        
     }
-    public void menu(){
+    public void menu() throws InterruptedException{
+        do{
         System.out.println("=====MENU=====");
         System.out.println("1. Tim kiem HD");
         System.out.println("2. Xem DSHD");
@@ -99,14 +139,15 @@ public class DANHSACHHOADON extends IOfile{
             case 2:
                 xuatDSHD();
                 break;
-            default:
-                throw new AssertionError();
+            case 3:
+                QUANLYCUAHANG.ADMIN();
         }
+        }while(option<3&&option>0);    
     }
     public void TTOAN_AD(){
         
     }
-    public void main(){
+    public void main() throws InterruptedException{
         menu();
     }
 }

@@ -1,7 +1,6 @@
 package OOP;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 public  class DANHSACHKHACHHANG extends IOfile{
     int option=0;
     ArrayList<KHACHHANG> arrayKH=new ArrayList<>();
@@ -20,7 +19,11 @@ public  class DANHSACHKHACHHANG extends IOfile{
     public void themKH(){       
         System.out.print("Nhap so dien thoai:");
         input=new Scanner(System.in);
-        String SDT= input.nextLine();
+        String SDT;
+        do{
+            SDT= input.nextLine();
+        }while (Checking.checkPhoneNum(SDT));            
+
         if(ktraKH(SDT)==0){
             KHACHHANG a= new KHACHHANG();
             a.NHAP_TEN();
@@ -42,7 +45,7 @@ public  class DANHSACHKHACHHANG extends IOfile{
         }
     }
 //TÌM KIẾM KHÁCH H, NEU TIM THAY CO QUYEN SUA,XOA
-    public void timKiem_admin(){
+    public void timKiem_admin() throws InterruptedException{
         arrayKH.clear();
         f.readFromFile_KH(arrayKH);
         System.out.print("Nhap so dien thoai:");
@@ -66,6 +69,7 @@ public  class DANHSACHKHACHHANG extends IOfile{
                         A.timKiem_HD(SDT);
                     }
                     case 4 -> {
+                        QUANLYCUAHANG.ADMIN();
                     }
                         
                 }
@@ -146,7 +150,7 @@ public  class DANHSACHKHACHHANG extends IOfile{
                 f.writeToFile_KH(arrayKH);}
         }
         }    
-    public void menu_KH_admin(){
+    public void menu_KH_admin() throws InterruptedException{
         do{
         System.out.println("=====MENU=====");
         System.out.println("1.Tim kiem");
@@ -166,14 +170,13 @@ public  class DANHSACHKHACHHANG extends IOfile{
                 xuatDSKH();
                 break;
             case 4:
-                
+                QUANLYCUAHANG.ADMIN();
                 break;
-            default:
-                throw new AssertionError();
         }
         }while (option>0&&option<5);            
     }
-    public void menu_KH_user(){
+
+    public void menu_KH_user() throws InterruptedException{
         do{
         System.out.println("=====MENU=====");
         System.out.println("1.Tim kiem");
@@ -193,14 +196,13 @@ public  class DANHSACHKHACHHANG extends IOfile{
                 xuatDSKH();
                 break;
             case 4:
-                
                 break;
             default:
                 throw new AssertionError();
         }
         }while (option>0&&option<5);            
     }
-    public void main(){
+    public void main() throws InterruptedException{
         menu_KH_admin();
         menu_KH_user();
     }

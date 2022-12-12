@@ -26,7 +26,7 @@ public class loinhuan {
         thu thu_n=new thu();
         loinhuan loi=new loinhuan();
 
-        System.out.print("Nhap ngay (dd/mm/yyyy): "); 
+        System.out.print("Nhap ngay (dd-mm-yyyy): "); 
         String ngay=sc.nextLine();
         chi_n.setnhaphang_n(ngay);
         chi_n.setchi_n();
@@ -34,7 +34,7 @@ public class loinhuan {
         System.out.println("\nTong chi ngay "+ngay+": "+chi_n.getchi_n());
         System.out.println("Tong thu ngay "+ngay+": "+thu_n.getbanhang_n());
         loi.loinhuan_n=thu_n.getbanhang_n()-chi_n.getchi_n();
-        System.out.println("Doanh thu: "+loi.getloinhuan_n()+"\n");
+        System.out.println("Loi nhuan: "+loi.getloinhuan_n()+"\n");
 
         sc.close();
     }
@@ -45,7 +45,7 @@ public class loinhuan {
         thu thu_t = new thu();
         loinhuan loi=new loinhuan();
 
-        System.out.print("Nhap thang (mm/yyyy): ");
+        System.out.print("Nhap thang (mm-yyyy): ");
         String thang=sc.nextLine();
         //nhập chi
         chi_t.setnhaphang_t(thang);
@@ -69,21 +69,27 @@ public class loinhuan {
     public static void main() throws InterruptedException {
         loinhuan LN = new loinhuan();
              Scanner sc=new Scanner(System.in);
+             
 
         int luachon1;
-        do{
+        outer:
+        while(true){
             System.out.println("\n<---------------------DOANH THU--------------------->\n");
             System.out.println("Xuat doanh thu theo: \n1.Ngay \n2.Thang \n0.Thoat");
             System.out.print("Nhap lua chon: ");
-            luachon1 = Integer.valueOf(sc.nextLine());
-            if (luachon1==1){
+            luachon1 = sc.nextInt();
+            switch(luachon1){
+                case 1:{
                 LN.doanhthungay();
-            }
-            else if (luachon1==2){
+                break;}
+                case 2:{
                 LN.doanhthuthang();
-            }
-            else if (luachon1==0) break;
-        } while(luachon1<1 || 3<luachon1);
+                break;}
+                case 3:
+                    break outer;
+
+        }
+        }
  
         sc.close();
     }
