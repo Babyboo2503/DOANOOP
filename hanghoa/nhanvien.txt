@@ -1,5 +1,0 @@
-1,Vy,19,vyle123@gmail.com,9/4 Tran Binh Trong,0937646711,Bao ve,100,41000000
-2,Phat,20,phattran@gmail.com,9/1 Ngo Quyen,0987654321,Nhan vien parttime,90,36900000
-3,Nam,21,namnguyen@gmail.com,3C5/8 Tran Van Giau,0376439771,Nhan vien parttime,90,34200000
-4,Sang,21,tansang234@gmail.com,8A An Duong Vuong,0912124567,Nhan vien fulltime,150,47500000
-5,Ngan,20,kieungan@gmail.com,9A/8 Hong Bang,0923456789,Quan ly,150,43000000

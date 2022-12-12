@@ -1,0 +1,5 @@
+toilavy;vy;1
+toilaphat;phat;2
+toilanam;nam;3
+toilasang;sang;4
+toilangoc;ngoc;6

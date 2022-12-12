@@ -1,0 +1,47 @@
+010,104,3,11/12/2022,260400000
+011,102,3,11/12/2022,190674000
+012,101,3,11/12/2022,64200000
+013,103,3,11/12/2022,303870000
+
+010,001,Cot let heo,147000,200,11/01/2023,kg,Con han su dung,29400000,TP
+010,002,Ba chi bo,472500,200,09/01/2023,kg,Con han su dung,94500000,TP
+010,003,Than bo,210000,200,11/01/2023,kg,Con han su dung,42000000,TP
+010,004,Ca hoi,315000,200,15/01/2023,kg,Con han su dung,63000000,TP
+010,005,Tom the,210000,150,29/12/2022,kg,Con han su dung,31500000,TP
+011,006,Nuoc rua chen Lix,85600,300,07/09/2024,Binh,Con han su dung,25680000,PTP
+011,007,Choi quet tran,88810,150,11/12/2025,Cay,Con han su dung,13321500,PTP
+011,008,Do lau san,128400,150,10/11/2025,Cay,Con han su dung,19260000,PTP
+011,009,Bo dung cu lam bep,374500,300,20/10/2026,Bo,Con han su dung,112350000,PTP
+011,010,Noi gang,80250,250,30/10/2025,Cai,Con han su dung,20062500,PTP
+012,011,Khau trang y te,18190,500,12/12/2023,Hop,Con han su dung,9095000,PTP
+012,012,Con sat khuan,32100,400,15/11/2024,Chai,Con han su dung,12840000,PTP
+012,013,Khan giay an,17120,500,30/12/2023,Goi,Con han su dung,8560000,PTP
+012,014,Khan giay lua,28890,500,30/12/2023,Goi,Con han su dung,14445000,PTP
+012,015,Nuoc rua tay Lifebuoy,64200,300,17/11/2024,Chai,Con han su dung,19260000,PTP
+013,016,Mi hao hao,115500,500,11/07/2023,Thung,Con han su dung,57750000,TP
+013,017,Chao yen thit bam,262500,350,11/10/2023,Thung,Con han su dung,91875000,TP
+013,018,Bot mi da dung,16800,400,07/11/2023,Goi,Con han su dung,6720000,TP
+013,019,Gao trang Thien Nhat,199500,400,11/12/2023,Tui,Con han su dung,79800000,TP
+013,020,Bo gia vi Dh Food,225750,300,07/01/2024,Bo,Con han su dung,67725000,TP
+
+
+001,Cot let heo,147000,200,11/01/2023,kg,Con han su dung,TP
+002,Ba chi bo,472500,200,09/01/2023,kg,Con han su dung,TP
+003,Than bo,210000,200,11/01/2023,kg,Con han su dung,TP
+004,Ca hoi,315000,200,15/01/2023,kg,Con han su dung,TP
+005,Tom the,210000,150,29/12/2022,kg,Con han su dung,TP
+006,Nuoc rua chen Lix,85600,300,07/09/2024,Binh,Con han su dung,PTP
+007,Choi quet tran,88810,150,11/12/2025,Cay,Con han su dung,PTP
+008,Do lau san,128400,150,10/11/2025,Cay,Con han su dung,PTP
+009,Bo dung cu lam bep,374500,300,20/10/2026,Bo,Con han su dung,PTP
+010,Noi gang,80250,250,30/10/2025,Cai,Con han su dung,PTP
+011,Khau trang y te,18190,500,12/12/2023,Hop,Con han su dung,PTP
+012,Con sat khuan,32100,400,15/11/2024,Chai,Con han su dung,PTP
+013,Khan giay an,17120,500,30/12/2023,Goi,Con han su dung,PTP
+014,Khan giay lua,28890,500,30/12/2023,Goi,Con han su dung,PTP
+015,Nuoc rua tay Lifebuoy,64200,300,17/11/2024,Chai,Con han su dung,PTP
+016,Mi hao hao,115500,500,11/07/2023,Thung,Con han su dung,TP
+017,Chao yen thit bam,262500,350,11/10/2023,Thung,Con han su dung,TP
+018,Bot mi da dung,16800,400,07/11/2023,Goi,Con han su dung,TP
+019,Gao trang Thien Nhat,199500,400,11/12/2023,Tui,Con han su dung,TP
+020,Bo gia vi Dh Food,225750,300,07/01/2024,Bo,Con han su dung,TP

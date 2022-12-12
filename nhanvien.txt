@@ -1,0 +1,6 @@
+1;Vy;19;hentz@gmail.com;9/4 d.1 binh trung tay;0937646711;Bao ve;100;14000000
+2;Phat;20;heyzowhatsupman@gmail.com;9/1 d.1 binh trung dong;0123456789;Nhan vien parttime;90;12100000
+3;Sang;21;heheboy@gmail.com;9/2 d.3 binh trung nam;0121234545;Nhan vien parttime;150;20500000
+4;Nam;23;hornytime@gmail.com;9/5 d.23 binh trung bac;0147258369;Nhan vien parttime;150;20500000
+5;Ngan;26;ohsshitethere@gmail.com;9/12 bann trung tay;0123478569;Quan ly;130;17700000
+6;Ngoc;20;ngoc@gmail.com;30/1 Ap 3 Le Minh Xuan;09877645432;Nhan vien parttime;90;7200000

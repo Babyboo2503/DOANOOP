@@ -1,3 +1,0 @@
-101,Nha cung cap A,0998877123
-102,Nha cung cap B,0998877456
-103,Nha cung cap C,0998877789
